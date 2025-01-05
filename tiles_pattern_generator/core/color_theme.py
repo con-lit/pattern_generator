@@ -1,5 +1,5 @@
 import random
-from core.commons.enums import Theme
+from tiles_pattern_generator.core.commons.enums import Theme
 
 
 class ColorTheme:

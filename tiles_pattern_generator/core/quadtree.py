@@ -1,10 +1,9 @@
-from core.color_theme import ColorTheme
-from core.commons.constants import SHAPE
-from core.connector import Connector
-from core.fills.perlin import Perlin
 from math import floor
-
-from core.tile import Tile
+from tiles_pattern_generator.core.color_theme import ColorTheme
+from tiles_pattern_generator.core.commons.constants import SHAPE
+from tiles_pattern_generator.core.connector import Connector
+from tiles_pattern_generator.core.fills.perlin import Perlin
+from tiles_pattern_generator.core.tile import Tile
 
 
 class QuadTree:

@@ -11,7 +11,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 
 # This call to setup() does all the work
 setup(
-    name="tiles-pattern-generator",
+    name="tiles_pattern_generator",
     version="0.0.1",
     description="Generative Art",
     long_description=long_description,
@@ -37,6 +37,9 @@ setup(
     packages= find_packages(include=(
         "tiles_pattern_generator",
         "tiles_pattern_generator.static",
+        "tiles_pattern_generator.core",
+        "tiles_pattern_generator.core.commons",
+        "tiles_pattern_generator.core.fills",
     ), exclude=('test')),
     include_package_data=True,
     install_requires=[

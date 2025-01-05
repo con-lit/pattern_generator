@@ -1,11 +1,11 @@
 import uuid
-from core.commons.constants import STROKES_PER_CELL
 import random
 import math
 from typing import List, Dict
 
-from core.commons.enums import Design, Direction, Side, TileType
-from core.stroke import Stroke
+from tiles_pattern_generator.core.commons.constants import STROKES_PER_CELL
+from tiles_pattern_generator.core.commons.enums import Design, Direction, Side, TileType
+from tiles_pattern_generator.core.stroke import Stroke
 
 class Tile:
     _type:TileType

@@ -1,14 +1,14 @@
 from PIL import Image
 import cairo
 from cairo import ImageSurface, FORMAT_ARGB32, Context
-from core.color_theme import ColorTheme
-from core.connector import Connector
-from core.draw import draw
-from core.fills.perlin import Perlin
-from core.quadtree import QuadTree
-from core.commons.constants import SHAPE, TILE_SIZE
+from tiles_pattern_generator.core.color_theme import ColorTheme
+from tiles_pattern_generator.core.connector import Connector
+from tiles_pattern_generator.core.draw import draw
+from tiles_pattern_generator.core.fills.perlin import Perlin
+from tiles_pattern_generator.core.quadtree import QuadTree
+from tiles_pattern_generator.core.commons.constants import SHAPE, TILE_SIZE
 from io import BytesIO
-from core.commons.enums import Design, Direction, Theme
+from tiles_pattern_generator.core.commons.enums import Design, Direction, Theme
 
 def divide_surface(l, s, m):
     k = l // s + 1

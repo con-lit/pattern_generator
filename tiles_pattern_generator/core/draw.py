@@ -1,8 +1,8 @@
 from io import BytesIO
-from core.commons.constants import TILE_SIZE
-from core.demo_tile import DemoTile
-from core.pattern import Pattern
-from core.tile import Tile
+from tiles_pattern_generator.core.commons.constants import TILE_SIZE
+from tiles_pattern_generator.core.demo_tile import DemoTile
+from tiles_pattern_generator.core.pattern import Pattern
+from tiles_pattern_generator.core.tile import Tile
 import cairo
 import cairosvg
 
