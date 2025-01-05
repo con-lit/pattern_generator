@@ -12,7 +12,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="tiles_pattern_generator",
-    version="0.0.3",
+    version="0.0.4",
     description="Generative Art",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -43,7 +43,7 @@ setup(
     ), exclude=('test')),
     include_package_data=True,
     package_data={
-        '': ['static/truchet_tiles_01/*.svg'],
+        '': ['core/static/truchet_tiles_01/*.svg'],
     },
     install_requires=[
         "pillow",
