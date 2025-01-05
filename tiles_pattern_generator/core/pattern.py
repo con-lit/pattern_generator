@@ -15,7 +15,7 @@ class Pattern:
         #print current directory
         print(os.getcwd())
         for file in files:
-            with open(f"./static/svg/{file}.svg", "r") as f:
+            with open(f"static/svg/{file}.svg", "r") as f:
                 svg_data = f.read()
                 self._files[file] = svg_data
 
@@ -37,5 +37,5 @@ class Pattern:
             raise ValueError("Size must be one of 1, 2, 4")
         if pattern not in ["round", "straight"]:    
             raise ValueError("Pattern must be one of 'round', 'straight'")
-        return f"./tiles_pattern_generator/static/svg/{pattern}_{size}.svg"
+        return f"static/svg/{pattern}_{size}.svg"
 
