@@ -1,5 +1,6 @@
 from tiles_pattern_generator.core.commons.enums import TileType
 import os
+import pkg_resources
 
 class Pattern:
     def __init__(self):
@@ -15,7 +16,8 @@ class Pattern:
         #print current directory
         print(os.getcwd())
         for file in files:
-            with open(f"static/svg/{file}.svg", "r") as f:
+            svg_path = pkg_resources.resource_filename(__name__, f'static/truchet_tiles_01/{file}.svg')
+            with open(svg_path, "r") as f:
                 svg_data = f.read()
                 self._files[file] = svg_data
 
