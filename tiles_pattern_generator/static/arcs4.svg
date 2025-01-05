@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <g id="production">
+    <g id="arcs4">
+      <g id="fills">
+        <rect id="c8" width="400" height="400" fill="{fill8}" stroke-width="0"/>
+        <path id="c7" d="M0,375c207.11,0,375-167.89,375-375H0v375Z" fill="{fill7}" stroke-width="0"/>
+        <path id="c6" d="M0,325c179.49,0,325-145.51,325-325H0v325Z" fill="{fill6}" stroke-width="0"/>
+        <path id="c5" d="M0,275c151.88,0,275-123.12,275-275H0v275Z" fill="{fill5}" stroke-width="0"/>
+        <path id="c4" d="M0,225c124.26,0,225-100.74,225-225H0v225Z" fill="{fill4}" stroke-width="0"/>
+        <path id="c3" d="M0,175c96.65,0,175-78.35,175-175H0v175Z" fill="{fill3}" stroke-width="0"/>
+        <path id="c2" d="M0,125c69.04,0,125-55.96,125-125H0v125Z" fill="{fill2}" stroke-width="0"/>
+        <path id="c1" d="M0,75c41.42,0,75-33.58,75-75H0v75Z" fill="{fill1}" stroke-width="0"/>
+        <path id="c0" d="M0,25c13.81,0,25-11.19,25-25H0v25Z" fill="{fill0}" stroke-width="0"/>
+        <path id="c9" d="M400,25C192.89,25,25,192.89,25,400h375V25Z" fill="{fill9}" stroke-width="0"/>
+        <path id="c10" d="M400,75c-179.49,0-325,145.51-325,325h325V75Z" fill="{fill10}" stroke-width="0"/>
+        <path id="c11" d="M400,125c-151.88,0-275,123.12-275,275h275V125Z" fill="{fill11}" stroke-width="0"/>
+        <path id="c12" d="M400,175c-124.26,0-225,100.74-225,225h225v-225Z" fill="{fill12}" stroke-width="0"/>
+        <path id="c13" d="M400,225c-96.65,0-175,78.35-175,175h175v-175Z" fill="{fill13}" stroke-width="0"/>
+        <path id="c14" d="M400,275c-69.04,0-125,55.96-125,125h125v-125Z" fill="{fill14}" stroke-width="0"/>
+        <path id="c15" d="M400,325c-41.42,0-75,33.58-75,75h75v-75Z" fill="{fill15}" stroke-width="0"/>
+        <path id="c16" d="M400,375c-13.81,0-25,11.19-25,25h25v-25Z" fill="{fill16}" stroke-width="0"/>
+      </g>
+      <g id="lines">
+        <path d="M374.11,25.89c.58-8.55.89-17.18.89-25.89" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,375c8.7,0,17.33-.3,25.89-.89" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M323.36,32.84c1.08-10.8,1.64-21.76,1.64-32.84" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,325c11.09,0,22.04-.56,32.84-1.64" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M270.84,47.84c2.73-15.54,4.16-31.52,4.16-47.84" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,275c16.32,0,32.3-1.43,47.84-4.16" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,175c96.65,0,175-78.35,175-175" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,125c69.04,0,125-55.96,125-125" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,75c41.42,0,75-33.58,75-75" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,25c13.81,0,25-11.19,25-25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M400,25C192.89,25,25,192.89,25,400" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M212.02,75.45c8.4-23.59,12.98-48.98,12.98-75.45" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,225c26.47,0,51.87-4.59,75.45-12.98" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M400,75c-179.49,0-325,145.51-325,325" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M400,125c-151.88,0-275,123.12-275,275" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M400,175c-124.26,0-225,100.74-225,225" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M400,225c-96.65,0-175,78.35-175,175" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M400,275c-69.04,0-125,55.96-125,125" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M400,325c-41.42,0-75,33.58-75,75" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M400,375c-13.81,0-25,11.19-25,25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <g id="lines-4">
+    <g id="lines4">
+      <g id="fills">
+        <rect id="c8" x="12.5" y="12.5" width="400" height="375" transform="translate(12.5 412.5) rotate(-90)" fill="{fill8}" stroke-width="0"/>
+        <rect id="c7" x="25" y="0" width="350" height="400" fill="{fill7}" stroke-width="0"/>
+        <rect id="c6" x="25" y="0" width="300" height="400" fill="{fill6}" stroke-width="0"/>
+        <rect id="c5" x="25" y="0" width="250" height="400" fill="{fill5}" stroke-width="0"/>
+        <rect id="c4" x="25" y="0" width="200" height="400" fill="{fill4}" stroke-width="0"/>
+        <rect id="c3" x="25" y="0" width="150" height="400" fill="{fill3}" stroke-width="0"/>
+        <rect id="c2" x="25" y="0" width="100" height="400" fill="{fill2}" stroke-width="0"/>
+        <rect id="c1" x="12.5" width="62.5" height="400" fill="{fill1}" stroke-width="0"/>
+        <rect id="c0" y="0" width="25" height="400" fill="{fill0}" stroke-width="0"/>
+        <rect id="c15" x="0" y="48.43" width="400" height="326.57" fill="{fill15}" stroke-width="0"/>
+        <rect id="c14" x="0" y="48.43" width="400" height="276.57" fill="{fill14}" stroke-width="0"/>
+        <rect id="c13" x="0" y="49.16" width="400" height="225.84" fill="{fill13}" stroke-width="0"/>
+        <rect id="c12" x="0" y="49.9" width="400" height="175.1" fill="{fill12}" stroke-width="0"/>
+        <rect id="c11" x="0" y="48.43" width="400" height="126.57" fill="{fill11}" stroke-width="0"/>
+        <rect id="c10" x="0" y="50" width="400" height="75" fill="{fill10}" stroke-width="0"/>
+        <rect id="c9" x="0" y="25" width="400" height="50" fill="{fill9}" stroke-width="0"/>
+      </g>
+      <g id="lines">
+        <line x1="0" y1="25" x2="400" y2="25" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="0" y1="75" x2="400" y2="75" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="0" y1="125" x2="400" y2="125" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="0" y1="175" x2="400" y2="175" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="0" y1="225" x2="400" y2="225" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="0" y1="275" x2="400" y2="275" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="0" y1="325" x2="400" y2="325" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="0" y1="375" x2="400" y2="375" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="25" y1="0" x2="25" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="75" y1="0" x2="75" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="125" y1="0" x2="125" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="175" y1="0" x2="175" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="225" y1="0" x2="225" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="275" y1="0" x2="275" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="325" y1="0" x2="325" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="375" y1="0" x2="375" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="25" y1="375" x2="25" y2="400" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="75" y1="375" x2="75" y2="400" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="125" y1="375" x2="125" y2="400" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="175" y1="375" x2="175" y2="400" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="225" y1="375" x2="225" y2="400" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="275" y1="375" x2="275" y2="400" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="325" y1="375" x2="325" y2="400" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="375" y1="375" x2="375" y2="400" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+      </g>
+    </g>
+  </g>
+</svg>

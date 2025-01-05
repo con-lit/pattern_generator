@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <g id="production">
+    <g id="arcs2">
+      <g id="fills">
+        <rect id="c4" width="200" height="200" fill="{fill4}" stroke-width="0"/>
+        <path id="c3" d="M0,175c96.65,0,175-78.35,175-175H0v175Z" fill="{fill3}" stroke-width="0"/>
+        <path id="c2" d="M0,125c69.04,0,125-55.96,125-125H0v125Z" fill="{fill2}" stroke-width="0"/>
+        <path id="c1" d="M0,75c41.42,0,75-33.58,75-75H0v75Z" fill="{fill1}" stroke-width="0"/>
+        <path id="c0" d="M0,25c13.81,0,25-11.19,25-25H0v25Z" fill="{fill0}" stroke-width="0"/>
+        <path id="c5" d="M200,25C103.35,25,25,103.35,25,200h175V25Z" fill="{fill5}" stroke-width="0"/>
+        <path id="c6" d="M200,75c-69.04,0-125,55.96-125,125h125v-125Z" fill="{fill6}" stroke-width="0"/>
+        <path id="c7" d="M200,125c-41.42,0-75,33.58-75,75h75v-75Z" fill="{fill7}" stroke-width="0"/>
+        <path id="c8" d="M200,175c-13.81,0-25,11.19-25,25h25v-25Z" fill="{fill8}" stroke-width="0"/>
+      </g>
+      <g id="lines">
+        <path d="M116.1,46.39c5.74-14.34,8.9-30,8.9-46.39" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,125c16.39,0,32.05-3.16,46.39-8.9" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,75c41.42,0,75-33.58,75-75" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,25c13.81,0,25-11.19,25-25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M200,25C103.35,25,25,103.35,25,200" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M200,75c-69.04,0-125,55.96-125,125" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M200,125c-41.42,0-75,33.58-75,75" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M200,175c-13.81,0-25,11.19-25,25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M172.91,27.09c1.37-8.83,2.09-17.88,2.09-27.09" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <path d="M0,175c9.21,0,18.26-.72,27.09-2.09" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_2" data-name="Ebene 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <g id="lines-2">
+    <g id="lines2">
+      <g id="fills">
+        <rect id="c4" x="0" y="0" width="200" height="200" transform="translate(0 200) rotate(-90)" fill="{fill4}" stroke-width="0"/>
+        <rect id="c3" x="25" y="0" width="150" height="200" fill="{fill3}" stroke-width="0"/>
+        <rect id="c2" x="25" y="0" width="100" height="200" fill="{fill2}" stroke-width="0"/>
+        <rect id="c1" x="0" width="75" height="200" fill="{fill1}" stroke-width="0"/>
+        <rect id="c0" x="-87.5" y="87.5" width="200" height="25" transform="translate(-87.5 112.5) rotate(-90)" fill="{fill0}" stroke-width="0"/>
+        <rect id="c7" x="0" y="25" width="200" height="150" fill="{fill7}" stroke-width="0"/>
+        <rect id="c6" x="0" y="25" width="200" height="100" fill="{fill6}" stroke-width="0"/>
+        <rect id="c5" x="0" y="25" width="200" height="50" fill="{fill5}" stroke-width="0"/>
+      </g>
+      <g id="lines">
+        <line y1="25" x2="200" y2="25" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line y1="75" x2="200" y2="75" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line y1="125" x2="200" y2="125" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line y1="175" x2="200" y2="175" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="25" y1="0" x2="25" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="75" y1="0" x2="75" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="125" y1="0" x2="125" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="175" y1="0" x2="175" y2="25" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="25" y1="174.21" x2="25" y2="199.21" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="75" y1="174.21" x2="75" y2="199.21" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="125" y1="174.21" x2="125" y2="199.21" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+        <line x1="175" y1="174.21" x2="175" y2="199.21" fill="none" stroke="{stroke}" stroke-miterlimit="10" stroke-width="{stroke-width}"/>
+      </g>
+    </g>
+  </g>
+</svg>
