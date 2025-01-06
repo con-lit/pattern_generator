@@ -10,9 +10,15 @@ from tiles_pattern_generator.core.utils import int_to_hex_color
 patterns = Pattern()
 
 class Renderer:
-    def __init__(self, ctx: Context, cell_size: int):
+    def __init__(self, ctx: Context, cell_size: int, stroke_color: int, stroke_width: int):
+        if stroke_color < 0 or stroke_color > 0xffffff:
+            raise ValueError(f"Invalid stroke_color value {stroke_color}")
+        if stroke_width < 0:
+            raise ValueError(f"Invalid stroke_width value {stroke_width}")
         self.ctx = ctx
         self.cell_size = cell_size
+        self.stroke_color = stroke_color
+        self.stroke_width = stroke_width
 
     def draw(self, tile:Tile):
         x = tile.x
@@ -24,8 +30,8 @@ class Renderer:
             color_name = f'{{fill{i}}}'
             new_color = int_to_hex_color(stroke.color) if stroke.color else "#ffffff"
             svg_data = svg_data.replace(color_name, new_color)
-            svg_data = svg_data.replace(r"{stroke}", "#000")
-            svg_data = svg_data.replace(r"{stroke-width}", "8")
+            svg_data = svg_data.replace(r"{stroke}", int_to_hex_color(self.stroke_color))
+            svg_data = svg_data.replace(r"{stroke-width}", str(self.stroke_width))
         bytes = cairosvg.svg2png(bytestring=svg_data,
                                 output_height=screen_size,
                                 output_width=screen_size,)  

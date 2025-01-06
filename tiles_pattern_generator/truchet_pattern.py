@@ -16,9 +16,11 @@ def generate(
         width:int = 800,
         height:int = 600,
         cell_size:int = 40,
-        arcs_probability:float = 1,
+        arcs_probability:float = 0.5,
         directions:Literal['mixed', 'horizontal', 'vertical'] = 'mixed',
         colors:List[int] = themes.RANDOM,
+        stroke_color: int = 0x000000,
+        stroke_width: int = 8,
     ) -> BytesIO:
     """
     Generate a truchet pattern.
@@ -44,10 +46,10 @@ def generate(
                                               size_height,
                                               DesignGenerator(arcs_probability, directions)))
     quadtree.connect()
-    quadtree.colorize(ColorGenerator(colors))
+    quadtree.colorize(ColorGenerator(colors, stroke_color, stroke_width))
 
     surface = ImageSurface(FORMAT_ARGB32, size_width*cell_size, size_height*cell_size)
-    quadtree.render(Renderer(Context(surface), cell_size))
+    quadtree.render(Renderer(Context(surface), cell_size, stroke_color, stroke_width))
 
     img = cairo_to_png(surface)
     return img

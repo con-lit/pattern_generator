@@ -30,7 +30,7 @@ class DesignGenerator:
             case 'mixed':
                 direction = random.choice([0, 1, 2, 3])
             case 'horizontal':
-                direction = 1
-            case 'vertical':
                 direction = 0
+            case 'vertical':
+                direction = 1
         return tile_type, direction
