@@ -33,7 +33,7 @@ class Theme:
     
     random = []
 
-def generate_pattern(width:int = 800,
+def generate(width:int = 800,
                      height:int = 600,
                      cell_size:int = 40,
                      arcs_probability:float = 1,
