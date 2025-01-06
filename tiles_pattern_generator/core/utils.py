@@ -8,7 +8,7 @@ def divide_surface(l, s, m, max_cells):
     k = (k // m + 1) * m if k % m != 0 else k
     return k if k < max_cells else max_cells
 
-def int_to_hex_color(self, value: int) -> str:
+def int_to_hex_color(value: int) -> str:
     if not (0x000000 <= value <= 0xFFFFFF):
         raise ValueError("Value must be in the range 0x000000 to 0xFFFFFF")
     return f"#{value:06X}"
