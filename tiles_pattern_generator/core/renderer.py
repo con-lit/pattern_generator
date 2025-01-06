@@ -12,7 +12,7 @@ class Renderer:
         self.ctx = ctx
         self.cell_size = cell_size
     
-    def _int_to_hex_color(value: int) -> str:
+    def _int_to_hex_color(self, value: int) -> str:
         if not (0x000000 <= value <= 0xFFFFFF):
             raise ValueError("Value must be in the range 0x000000 to 0xFFFFFF")
         return f"#{value:06X}"
