@@ -46,7 +46,7 @@ def generate(
                                               size_height,
                                               DesignGenerator(arcs_probability, directions)))
     quadtree.connect()
-    quadtree.colorize(ColorGenerator(colors, stroke_color, stroke_width))
+    quadtree.colorize(ColorGenerator(colors))
 
     surface = ImageSurface(FORMAT_ARGB32, size_width*cell_size, size_height*cell_size)
     quadtree.render(Renderer(Context(surface), cell_size, stroke_color, stroke_width))
