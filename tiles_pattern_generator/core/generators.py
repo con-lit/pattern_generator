@@ -1,19 +1,18 @@
 import random
 from typing import List, Literal, Tuple
 
-from tiles_pattern_generator.core.commons.enums import TileType, Direction
-from tiles_pattern_generator.core.tile import Tile
+from tiles_pattern_generator.core.commons.enums import TileType
 
 
 class ColorGenerator:
     def __init__(self, colors:List[int]):
         valid_colors = [i for i in colors if 0 <= i <= 0xffffff]
         if len(valid_colors) == 0:
-            valid_colors = [[random.randint(0, 255) for _ in range(3)] for _ in range(10)]
-        self.colors =valid_colors
+            valid_colors = [random.randint(0, 0xffffff) for _ in range(10)]
+        self.colors = valid_colors
 
     @property
-    def random_color(self) -> list:
+    def random_color(self) -> int:
         return random.choice(self.colors)
     
 class DesignGenerator:
