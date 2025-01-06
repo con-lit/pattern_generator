@@ -1,17 +1,16 @@
 from tiles_pattern_generator.core.commons.enums import Design, Direction, Side
 from tiles_pattern_generator.core.commons.data_classes import Link
+from tiles_pattern_generator.core.generators import DesignGenerator
 
 
 class Connector:
   def __init__(self,
                width: int,
                height: int,
-               design:Design = Design.MIXED,
-               direction:Direction = Direction.MIXED):
+               design_generator: DesignGenerator):
     if not (width > 0 and height > 0):
       raise ValueError("Width and height must be greater than 0.")
-    self.design = design
-    self.direction = direction
+    self.design_generator = design_generator
     self.horizontal_connections = [[[] for _ in range(width)] for _ in range(height + 1)]
     self.vertical_connections = [[[] for _ in range(width + 1)] for _ in range(height)]
   

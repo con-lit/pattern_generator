@@ -19,32 +19,8 @@ class Tile:
         self._size = size
         self._connector = connector
         self._interfaces = {}
-        
-        match connector.design:
-            case Design.ONLY_ARCS:
-                self._type = TileType.ARKS
-            case Design.ONLY_LINES:
-                self._type = TileType.LINES
-            case Design.MORE_ARCS:
-                self._type = TileType.ARKS if random.random() < 0.9 else TileType.LINES
-            case Design.MORE_LINES:
-                self._type = TileType.LINES if random.random() < 0.9 else TileType.ARKS
-            case Design.MIXED:
-                self._type = TileType.ARKS if random.random() < 0.5 else TileType.LINES
-            case _:
-                raise ValueError(f"Invalid design value {connector.design}")
-        
-        match connector.direction:
-            case Direction.HORIZONTAL:
-                self._rotation_index = 0
-            case Direction.VERTICAL:
-                self._rotation_index = 1
-            case Direction.MIXED:
-                self._rotation_index = random.randint(0, 3)
-            case _:
-                raise ValueError(f"Invalid direction value {connector.direction}")
-        
-        # print(self.uuid, self._type, self._rotation_index)
+
+        self._type, self._rotation_index = connector.design_generator.random_tile(size)
         
         self._register_links()
         self._side_indexes = self._create_indexes()

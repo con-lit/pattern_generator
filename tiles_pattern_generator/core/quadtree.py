@@ -1,8 +1,9 @@
 from math import floor
-from tiles_pattern_generator.core.color_theme import ColorTheme
-from tiles_pattern_generator.core.commons.constants import SHAPE
+from tiles_pattern_generator.core.generators import ColorGenerator
+from tiles_pattern_generator.core.commons.constants import MAX_QUAD_SIZE
 from tiles_pattern_generator.core.connector import Connector
 from tiles_pattern_generator.core.fills.perlin import Perlin
+from tiles_pattern_generator.core.renderer import Renderer
 from tiles_pattern_generator.core.tile import Tile
 
 
@@ -15,7 +16,7 @@ class QuadTree:
         self.matrix = matrix
         self.connector = connector
         if self.can_be_divided:
-            if self.boundary[2] > SHAPE and self.boundary[3] > SHAPE:
+            if self.boundary[2] > MAX_QUAD_SIZE and self.boundary[3] > MAX_QUAD_SIZE:
                 self._divide_surface()
             else:
                 self._divide_quads()
@@ -38,9 +39,9 @@ class QuadTree:
         k_width = self.boundary[2]
         k_hight = self.boundary[3]
         self.children = []
-        for y in range(0, k_hight, SHAPE):
-            for x in range(0, k_width, SHAPE):
-                boundary = (x, y, SHAPE, SHAPE)
+        for y in range(0, k_hight, MAX_QUAD_SIZE):
+            for x in range(0, k_width, MAX_QUAD_SIZE):
+                boundary = (x, y, MAX_QUAD_SIZE, MAX_QUAD_SIZE)
                 self.children.append(QuadTree(boundary,
                                               self.matrix.slice(x=boundary[0],
                                                                 y=boundary[1],
@@ -65,11 +66,11 @@ class QuadTree:
             QuadTree(se, se_slice, self.connector),
         ]
 
-    def render(self, ctx, draw):
+    def render(self, renderer:Renderer):
         if self.divided:
-            for child in self.children: child.render(ctx, draw)
+            for child in self.children: child.render(renderer)
         else:
-            draw(ctx, self.tile)
+            renderer.draw(self.tile)
 
     def connect(self):
         if self.divided:
@@ -77,9 +78,9 @@ class QuadTree:
         else:
             self.tile.connect()
 
-    def colorize(self, color_theme:ColorTheme):
+    def colorize(self, color_generator:ColorGenerator):
         if self.divided:
-            for child in self.children: child.colorize(color_theme)
+            for child in self.children: child.colorize(color_generator)
         else:
             for stroke in  self.tile.strokes:
-                stroke.set_color(color_theme.random_color)
+                stroke.set_color(color_generator.random_color)

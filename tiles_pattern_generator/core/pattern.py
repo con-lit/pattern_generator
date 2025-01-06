@@ -14,7 +14,6 @@ class Pattern:
         ]
         self._files = {}
         #print current directory
-        print(os.getcwd())
         for file in files:
             svg_path = pkg_resources.resource_filename(__name__, f'static/truchet_tiles_01/{file}.svg')
             with open(svg_path, "r") as f:
@@ -33,11 +32,4 @@ class Pattern:
                 raise ValueError("Wrong tile type")
         svg_data = self._files[key]
         return svg_data
-    
-    def get_filename(self, size:int, pattern:str):
-        if size not in [1, 2, 4]:
-            raise ValueError("Size must be one of 1, 2, 4")
-        if pattern not in ["round", "straight"]:    
-            raise ValueError("Pattern must be one of 'round', 'straight'")
-        return f"static/svg/{pattern}_{size}.svg"
 
