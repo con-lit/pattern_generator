@@ -1,5 +1,5 @@
 from typing import Dict, List
-from src.truchet_tiling.commons.enums import Side
+from truchet_tiling.commons.enums import Side
 
 class Stroke:
     _connectors:Dict[Side, List]
@@ -14,7 +14,7 @@ class Stroke:
         return self._color
 
     def add_link(self, side:Side, link, stroke_id:int):
-        from src.truchet_tiling.commons.data_classes import Connection
+        from truchet_tiling.commons.data_classes import Connection
         if link is None:
             self._connectors[side] = []
         else:

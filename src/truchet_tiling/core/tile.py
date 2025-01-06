@@ -1,11 +1,10 @@
 import uuid
-import random
 import math
 from typing import List, Dict
 
-from src.truchet_tiling.commons.constants import STROKES_PER_CELL
-from src.truchet_tiling.commons.enums import Side, TileType
-from src.truchet_tiling.core.stroke import Stroke
+from truchet_tiling.commons.constants import STROKES_PER_CELL
+from truchet_tiling.commons.enums import Side, TileType
+from truchet_tiling.core.stroke import Stroke
 
 class Tile:
     _type:TileType

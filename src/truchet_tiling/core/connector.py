@@ -1,6 +1,6 @@
-from src.truchet_tiling.commons.enums import Design, Direction, Side
-from src.truchet_tiling.commons.data_classes import Link
-from src.truchet_tiling.core.generators import DesignGenerator
+from truchet_tiling.commons.enums import Side
+from truchet_tiling.commons.data_classes import Link
+from truchet_tiling.core.generators import DesignGenerator
 
 
 class Connector:

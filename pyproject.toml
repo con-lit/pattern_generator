@@ -4,13 +4,14 @@ build-backend = "hatchling.build"
 
 [project]
 name = "truchet_tiling"
-version = "0.0.18"
+version = "0.0.24"
 authors = [
   { name="Constantin Litvak", email="clitvak@outlook.com" },
 ]
 description = "A truchet tiles generator"
 readme = "README.md"
 requires-python = ">=3.8"
+dependencies = ["pillow", "pycairo", "cairosvg", "numpy", "perlin_noise"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -22,7 +23,4 @@ Homepage = "https://github.com/con-lit/pattern_generator"
 Issues = "https://github.com/con-lit/pattern_generator/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/truchet_tiling", "src/truchet_tiling/core", "src/truchet_tiling/commons", "src/truchet_tiling/fills"]
-
 [tool.hatch.build.targets.sdist]
-include = ["src/core/static/truchet_tiles_01/*.svg"]

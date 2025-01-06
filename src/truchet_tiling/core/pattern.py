@@ -1,4 +1,4 @@
-from src.truchet_tiling.commons.enums import TileType
+from truchet_tiling.commons.enums import TileType
 import pkg_resources
 
 class Pattern:
