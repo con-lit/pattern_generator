@@ -1,11 +1,11 @@
 from io import BytesIO
-from src.core.demo_tile import DemoTile
-from src.core.pattern import Pattern
-from src.core.tile import Tile
+from src.truchet_tiling.core.demo_tile import DemoTile
+from src.truchet_tiling.core.pattern import Pattern
+from src.truchet_tiling.core.tile import Tile
 from cairo import Context, ImageSurface
 import cairosvg
 
-from src.core.utils import int_to_hex_color
+from src.truchet_tiling.core.utils import int_to_hex_color
 
 patterns = Pattern()
 

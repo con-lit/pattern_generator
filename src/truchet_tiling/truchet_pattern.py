@@ -3,13 +3,13 @@ from typing import List, Literal
 
 from cairo import FORMAT_ARGB32, Context, ImageSurface
 from src import themes
-from src.core.commons.constants import MAX_QUAD_SIZE
-from src.core.connector import Connector
-from src.core.renderer import Renderer
-from src.core.fills.perlin import Perlin
-from src.core.generators import ColorGenerator, DesignGenerator
-from src.core.quadtree import QuadTree
-from src.core.utils import cairo_to_png, divide_surface
+from src.truchet_tiling.core.commons.constants import MAX_QUAD_SIZE
+from src.truchet_tiling.core.connector import Connector
+from src.truchet_tiling.core.renderer import Renderer
+from src.truchet_tiling.core.fills.perlin import Perlin
+from src.truchet_tiling.core.generators import ColorGenerator, DesignGenerator
+from src.truchet_tiling.core.quadtree import QuadTree
+from src.truchet_tiling.core.utils import cairo_to_png, divide_surface
 
     
 def generate(

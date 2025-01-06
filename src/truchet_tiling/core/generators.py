@@ -1,7 +1,7 @@
 import random
 from typing import List, Literal, Tuple
 
-from src.core.commons.enums import TileType
+from src.truchet_tiling.core.commons.enums import TileType
 
 
 class ColorGenerator:

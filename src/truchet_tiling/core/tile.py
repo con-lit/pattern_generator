@@ -3,9 +3,9 @@ import random
 import math
 from typing import List, Dict
 
-from src.core.commons.constants import STROKES_PER_CELL
-from src.core.commons.enums import Design, Direction, Side, TileType
-from src.core.stroke import Stroke
+from src.truchet_tiling.core.commons.constants import STROKES_PER_CELL
+from src.truchet_tiling.core.commons.enums import Design, Direction, Side, TileType
+from src.truchet_tiling.core.stroke import Stroke
 
 class Tile:
     _type:TileType

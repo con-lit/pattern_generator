@@ -1,17 +1,9 @@
-from src.core.commons.enums import TileType
-import os
+from src.truchet_tiling.core.commons.enums import TileType
 import pkg_resources
 
 class Pattern:
     def __init__(self):
-        files = [
-            "arcs1",
-            "arcs2",
-            "arcs4",
-            "lines1",
-            "lines2",
-            "lines4",
-        ]
+        files = ["arcs1", "arcs2", "arcs4", "lines1", "lines2", "lines4"]
         self._files = {}
         #print current directory
         for file in files:

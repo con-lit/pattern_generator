@@ -1,12 +1,12 @@
-* A truchet tiles generator
+# A truchet tiles generator
 
-** Install
+## Install
 
-pip install git+https://github.com/con-lit/pattern_generator.git
+'pip install -i https://test.pypi.org/simple/ truchet-tiling'
 
 
-** Cairo dependancies
+## Cairo dependancies
 
 Probably you will need to install some dependancies for cairo:  
-!apt-get update
-!apt-get install -y pkg-config libcairo2-dev
+'!apt-get update'
+'!apt-get install -y pkg-config libcairo2-dev'

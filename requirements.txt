@@ -1,5 +1,5 @@
-setuptools
 build
+twine
 pillow
 pycairo
 cairosvg

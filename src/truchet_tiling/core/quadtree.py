@@ -1,10 +1,10 @@
 from math import floor
-from src.core.generators import ColorGenerator
-from src.core.commons.constants import MAX_QUAD_SIZE
-from src.core.connector import Connector
-from src.core.fills.perlin import Perlin
-from src.core.renderer import Renderer
-from src.core.tile import Tile
+from src.truchet_tiling.core.generators import ColorGenerator
+from src.truchet_tiling.core.commons.constants import MAX_QUAD_SIZE
+from src.truchet_tiling.core.connector import Connector
+from src.truchet_tiling.core.fills.perlin import Perlin
+from src.truchet_tiling.core.renderer import Renderer
+from src.truchet_tiling.core.tile import Tile
 
 
 class QuadTree:
