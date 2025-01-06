@@ -1,4 +1,5 @@
 setuptools
+build
 pillow
 pycairo
 cairosvg

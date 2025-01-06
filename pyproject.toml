@@ -1,0 +1,27 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "truchet_tiling"
+version = "0.0.16"
+authors = [
+  { name="Constantin Litvak", email="clitvak@outlook.com" },
+]
+description = "A truchet tiles generator"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/con-lit/pattern_generator"
+Issues = "https://github.com/con-lit/pattern_generator/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/truchet_pattern", "src/themes"]
+include = ["src/core/static/truchet_tiles_01/*.svg"]
+exclude = ["__pycache__"]
