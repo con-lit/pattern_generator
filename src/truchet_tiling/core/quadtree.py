@@ -1,8 +1,8 @@
 from math import floor
 from src.truchet_tiling.core.generators import ColorGenerator
-from src.truchet_tiling.core.commons.constants import MAX_QUAD_SIZE
+from src.truchet_tiling.commons.constants import MAX_QUAD_SIZE
 from src.truchet_tiling.core.connector import Connector
-from src.truchet_tiling.core.fills.perlin import Perlin
+from src.truchet_tiling.fills.perlin import Perlin
 from src.truchet_tiling.core.renderer import Renderer
 from src.truchet_tiling.core.tile import Tile
 

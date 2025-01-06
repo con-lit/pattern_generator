@@ -22,6 +22,7 @@ Homepage = "https://github.com/con-lit/pattern_generator"
 Issues = "https://github.com/con-lit/pattern_generator/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/core", "src/core/fills", "src/core/commons"]
+packages = ["src/truchet_tiling", "src/truchet_tiling/core", "src/truchet_tiling/commons", "src/truchet_tiling/fills"]
+
+[tool.hatch.build.targets.sdist]
 include = ["src/core/static/truchet_tiles_01/*.svg"]
-exclude = ["__pycache__"]

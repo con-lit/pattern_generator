@@ -3,8 +3,8 @@ import random
 import math
 from typing import List, Dict
 
-from src.truchet_tiling.core.commons.constants import STROKES_PER_CELL
-from src.truchet_tiling.core.commons.enums import Design, Direction, Side, TileType
+from src.truchet_tiling.commons.constants import STROKES_PER_CELL
+from src.truchet_tiling.commons.enums import Side, TileType
 from src.truchet_tiling.core.stroke import Stroke
 
 class Tile:
