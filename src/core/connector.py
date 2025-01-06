@@ -1,6 +1,6 @@
-from tiles_pattern_generator.core.commons.enums import Design, Direction, Side
-from tiles_pattern_generator.core.commons.data_classes import Link
-from tiles_pattern_generator.core.generators import DesignGenerator
+from src.core.commons.enums import Design, Direction, Side
+from src.core.commons.data_classes import Link
+from src.core.generators import DesignGenerator
 
 
 class Connector:

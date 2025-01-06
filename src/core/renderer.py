@@ -1,11 +1,11 @@
 from io import BytesIO
-from tiles_pattern_generator.core.demo_tile import DemoTile
-from tiles_pattern_generator.core.pattern import Pattern
-from tiles_pattern_generator.core.tile import Tile
+from src.core.demo_tile import DemoTile
+from src.core.pattern import Pattern
+from src.core.tile import Tile
 from cairo import Context, ImageSurface
 import cairosvg
 
-from tiles_pattern_generator.core.utils import int_to_hex_color
+from src.core.utils import int_to_hex_color
 
 patterns = Pattern()
 

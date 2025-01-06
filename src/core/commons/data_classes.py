@@ -3,8 +3,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Link:
-    from tiles_pattern_generator.core.commons.enums import Side
-    from tiles_pattern_generator.core.tile import Tile
+    from src.core.commons.enums import Side
+    from src.core.tile import Tile
     tile: Tile
     side: Side
     interface_id: int

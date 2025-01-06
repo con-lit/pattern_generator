@@ -2,14 +2,14 @@ from io import BytesIO
 from typing import List, Literal
 
 from cairo import FORMAT_ARGB32, Context, ImageSurface
-from tiles_pattern_generator import themes
-from tiles_pattern_generator.core.commons.constants import MAX_QUAD_SIZE
-from tiles_pattern_generator.core.connector import Connector
-from tiles_pattern_generator.core.renderer import Renderer
-from tiles_pattern_generator.core.fills.perlin import Perlin
-from tiles_pattern_generator.core.generators import ColorGenerator, DesignGenerator
-from tiles_pattern_generator.core.quadtree import QuadTree
-from tiles_pattern_generator.core.utils import cairo_to_png, divide_surface
+from src import themes
+from src.core.commons.constants import MAX_QUAD_SIZE
+from src.core.connector import Connector
+from src.core.renderer import Renderer
+from src.core.fills.perlin import Perlin
+from src.core.generators import ColorGenerator, DesignGenerator
+from src.core.quadtree import QuadTree
+from src.core.utils import cairo_to_png, divide_surface
 
     
 def generate(

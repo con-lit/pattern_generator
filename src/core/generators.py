@@ -1,7 +1,7 @@
 import random
 from typing import List, Literal, Tuple
 
-from tiles_pattern_generator.core.commons.enums import TileType
+from src.core.commons.enums import TileType
 
 
 class ColorGenerator:

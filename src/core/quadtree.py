@@ -1,10 +1,10 @@
 from math import floor
-from tiles_pattern_generator.core.generators import ColorGenerator
-from tiles_pattern_generator.core.commons.constants import MAX_QUAD_SIZE
-from tiles_pattern_generator.core.connector import Connector
-from tiles_pattern_generator.core.fills.perlin import Perlin
-from tiles_pattern_generator.core.renderer import Renderer
-from tiles_pattern_generator.core.tile import Tile
+from src.core.generators import ColorGenerator
+from src.core.commons.constants import MAX_QUAD_SIZE
+from src.core.connector import Connector
+from src.core.fills.perlin import Perlin
+from src.core.renderer import Renderer
+from src.core.tile import Tile
 
 
 class QuadTree:

@@ -1,4 +1,4 @@
-from tiles_pattern_generator.core.commons.enums import TileType
+from src.core.commons.enums import TileType
 import os
 import pkg_resources
 
