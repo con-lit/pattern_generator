@@ -5,17 +5,14 @@ from tiles_pattern_generator.core.tile import Tile
 from cairo import Context, ImageSurface
 import cairosvg
 
+from tiles_pattern_generator.core.utils import int_to_hex_color
+
 patterns = Pattern()
 
 class Renderer:
     def __init__(self, ctx: Context, cell_size: int):
         self.ctx = ctx
         self.cell_size = cell_size
-    
-    def _int_to_hex_color(self, value: int) -> str:
-        if not (0x000000 <= value <= 0xFFFFFF):
-            raise ValueError("Value must be in the range 0x000000 to 0xFFFFFF")
-        return f"#{value:06X}"
 
     def draw(self, tile:Tile):
         x = tile.x
@@ -25,7 +22,7 @@ class Renderer:
         svg_data = patterns.get(s, tile.type)
         for i, stroke in enumerate(tile.strokes):
             color_name = f'{{fill{i}}}'
-            new_color = self._int_to_hex_color(stroke.color) if stroke.color else "#ffffff"
+            new_color = int_to_hex_color(stroke.color) if stroke.color else "#ffffff"
             svg_data = svg_data.replace(color_name, new_color)
             svg_data = svg_data.replace(r"{stroke}", "#000")
             svg_data = svg_data.replace(r"{stroke-width}", "8")
