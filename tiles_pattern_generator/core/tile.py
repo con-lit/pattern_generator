@@ -20,7 +20,7 @@ class Tile:
         self._connector = connector
         self._interfaces = {}
 
-        self._type, self._rotation_index = connector.design_generator.random_tile(size)
+        self._type, self._rotation_index = connector.design_generator.get_design()
         
         self._register_links()
         self._side_indexes = self._create_indexes()

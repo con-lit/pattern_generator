@@ -25,7 +25,7 @@ class DesignGenerator:
         self.arcs_probability = arcs_probability
         self.directions = directions
 
-    def random_tile(self) -> Tuple[TileType, Literal[0, 1, 2, 3]]:
+    def get_design(self) -> Tuple[TileType, Literal[0, 1, 2, 3]]:
         tile_type = TileType.ARKS if random.random() < self.arcs_probability else TileType.LINES
         match self.directions:
             case 'mixed':
