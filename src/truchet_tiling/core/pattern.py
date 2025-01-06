@@ -1,5 +1,6 @@
+import importlib.resources
+import truchet_tiling.static.truchet_tiles_01 as tt
 from truchet_tiling.commons.enums import TileType
-import pkg_resources
 
 class Pattern:
     def __init__(self):
@@ -7,10 +8,10 @@ class Pattern:
         self._files = {}
         #print current directory
         for file in files:
-            svg_path = pkg_resources.resource_filename(__name__, f'static/truchet_tiles_01/{file}.svg')
-            with open(svg_path, "r") as f:
-                svg_data = f.read()
-                self._files[file] = svg_data
+            with importlib.resources.path(tt, f'{file}.svg') as fspath:
+                with open(str(fspath), "r") as f:
+                    svg_data = f.read()
+                    self._files[file] = svg_data
 
     def get(self, size:int, pattern:TileType) -> str:
         if size not in [1, 2, 4]:
