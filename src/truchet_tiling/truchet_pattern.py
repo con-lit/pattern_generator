@@ -2,7 +2,7 @@ from io import BytesIO
 from typing import List, Literal
 
 from cairo import FORMAT_ARGB32, Context, ImageSurface
-from truchet_tiling import themes
+from truchet_tiling.commons import themes
 from truchet_tiling.commons.constants import MAX_QUAD_SIZE
 from truchet_tiling.core.connector import Connector
 from truchet_tiling.core.renderer import Renderer
@@ -29,9 +29,11 @@ def generate(
     width (int): Minimal width of the pattern.
     height (int): Minimal height of the pattern.
     cell_size (int): Size of the cell in the pattern.
-    arcs_probability (int): Probability of arcs in the pattern.
+    arcs_probability (float): Probability of arcs in the pattern. Accepted float values in the range [0, 1].
     directions (str): Direction of the pattern. Accepted values are ['mixed', 'horizontal', 'vertical'].
     colors (List[int]): List of colors to use in the pattern. With Null a random color set will be used.
+    stroke_color (int): Color of the strokes. 
+    stroke_width (int): Width of the strokes.
 
     Returns:
     Image: Generated truchet pattern image.

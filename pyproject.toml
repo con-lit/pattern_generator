@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "truchet_tiling"
-version = "0.0.24"
+version = "0.0.26"
 authors = [
   { name="Constantin Litvak", email="clitvak@outlook.com" },
 ]
@@ -17,10 +17,12 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+keywords = ["truchet", "tiling", "pattern", "generative art"]
 
 [project.urls]
 Homepage = "https://github.com/con-lit/pattern_generator"
 Issues = "https://github.com/con-lit/pattern_generator/issues"
+
 
 [tool.hatch.build.targets.wheel]
 [tool.hatch.build.targets.sdist]

@@ -1,12 +1,24 @@
 # A truchet tiles generator
 
+Creates a truchet pattern as a PNG bitmap.
+
 ## Install
 
-'pip install -i https://test.pypi.org/simple/ truchet-tiling'
+`pip install truchet-tiling`
 
+## Usage
 
-## Cairo dependancies
+```python
+import truchet_tiling.truchet_pattern as tp
+from truchet_tiling.themes import BLUE_WAVES, RED_FLAMES, GREEN_FIELDS 
 
-Probably you will need to install some dependancies for cairo:  
-'!apt-get update'
-'!apt-get install -y pkg-config libcairo2-dev'
+image = tp.generate(
+    width=700,
+    height=500,
+    colors = RED_FLAMES,
+    directions='mixed',
+    arcs_probability=1,
+    stroke_color=0xFFFFFF,
+    stroke_width=6
+)
+```
