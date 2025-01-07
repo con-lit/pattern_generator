@@ -18,6 +18,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 keywords = ["truchet", "tiling", "pattern", "generative art"]
+license = "MIT"
 
 [project.urls]
 Homepage = "https://github.com/con-lit/pattern_generator"
