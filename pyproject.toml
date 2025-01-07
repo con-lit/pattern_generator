@@ -4,9 +4,9 @@ build-backend = "hatchling.build"
 
 [project]
 name = "truchet_tiling"
-version = "0.0.30"
+version = "0.0.31"
 authors = [
-  { name="Constantin Litvak", email="clitvak@outlook.com" },
+  { name="Constantin Litvak", email="mail@consta.de" },
 ]
 description = "A truchet tiles generator"
 readme = "README.md"
