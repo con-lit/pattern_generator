@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "truchet_tiling"
-version = "0.0.26"
+version = "0.0.28"
 authors = [
   { name="Constantin Litvak", email="clitvak@outlook.com" },
 ]
@@ -24,6 +24,12 @@ license = "MIT"
 Homepage = "https://github.com/con-lit/pattern_generator"
 Issues = "https://github.com/con-lit/pattern_generator/issues"
 
+[tool.hatch.build]
+exclude = [
+    "**/__pycache__",
+    "examples",
+]
 
 [tool.hatch.build.targets.wheel]
 [tool.hatch.build.targets.sdist]
+
