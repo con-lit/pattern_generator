@@ -2,7 +2,7 @@ from io import BytesIO
 from typing import List, Literal
 
 from cairo import FORMAT_ARGB32, Context, ImageSurface
-from truchet_tiling.commons import themes
+from truchet_tiling import themes
 from truchet_tiling.commons.constants import MAX_QUAD_SIZE
 from truchet_tiling.core.connector import Connector
 from truchet_tiling.core.renderer import Renderer
