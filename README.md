@@ -2,6 +2,8 @@
 
 Creates a truchet pattern as a PNG bitmap.
 
+![](https://raw.githubusercontent.com/con-lit/pattern_generator/refs/heads/main/examples/images/pattern01.png)
+
 ## Install
 
 `pip install truchet-tiling`
