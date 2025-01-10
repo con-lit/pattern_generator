@@ -11,7 +11,7 @@ from truchet_tiling.core.tiles_repository import TilesRepository
 
 tiles = TilesRepository()
 
-def draw_grid(ctx: Context, rows, cols, cell_width, cell_height):
+def draw_grid(ctx:Context, rows:int, cols:int, cell_width:int, cell_height:int):
     for j in range(cols):
         for i in range(rows):
             x = i * cell_width/2
@@ -20,12 +20,18 @@ def draw_grid(ctx: Context, rows, cols, cell_width, cell_height):
             svg = tiles.get_triangle()
             scale = int(svg.get("viewBox").split(" ")[2])/cell_width
             if reflection:
-                svg.set("transform", f"scale(1, -1) translate(0, {-scale * cell_height})")
+                transform = f"scale(1, -1) translate(0, {-scale * cell_height})"
+            else:
+                transform = f"scale(1, 1) translate(0, )"
+            svg.set(
+                "transform",
+                transform
+            )
             svg_data = ET.tostring(svg, encoding='utf-8', method='xml')
             bytes = cairosvg.svg2png(
                 bytestring=svg_data,
-                output_height=cell_height,
-                output_width=cell_width,
+                output_height=cell_height + 1,
+                output_width=cell_width + 1,
             )  
             surface = ImageSurface.create_from_png(BytesIO(bytes))
             ctx.save()

@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="vectors" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 86.6">
-  <defs>
-    <radialGradient id="Unbenannter_Verlauf_11" data-name="Unbenannter Verlauf 11" cx="49.89" cy="28.85" fx="49.89" fy="28.85" r="57.89" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#78bf00"/>
-      <stop offset="1" stop-color="#fff"/>
-    </radialGradient>
-  </defs>
+<svg id="vectors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 86.6">
   <g id="triangle">
-    <polygon points="50 86.6 0 0 100 0 50 86.6" style="fill: url(#Unbenannter_Verlauf_11); fill-rule: evenodd; stroke-width: 0px;"/>
+    <polygon points="50 86.6 0 0 100 0 50 86.6" style="fill: #e6e6e6; stroke-width: 0px;"/>
+  </g>
+  <g>
+    <path d="M57.49,24.54c3.22-7.53,5.01-15.83,5.01-24.54" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+    <path d="M18.75,32.47C29.95,25.99,37.5,13.88,37.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+    <path d="M6.25,10.82c3.74-2.16,6.25-6.19,6.25-10.82" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+    <g>
+      <path d="M81.25,32.47c-11.21-6.48-18.75-18.59-18.75-32.47" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+      <path d="M93.75,10.82c-3.74-2.16-6.25-6.19-6.25-10.82" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+    </g>
+    <g>
+      <path d="M18.75,32.48c18.7-10.77,42.46-11.57,62.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+      <path d="M31.25,54.13c11.22-6.46,25.48-6.94,37.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+      <path d="M43.75,75.79c3.74-2.15,8.49-2.32,12.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10; stroke-width: 2px;"/>
+    </g>
   </g>
 </svg>
