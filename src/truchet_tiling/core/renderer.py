@@ -1,13 +1,13 @@
 from io import BytesIO
 from truchet_tiling.core.demo_tile import DemoTile
-from truchet_tiling.core.pattern import Pattern
+from truchet_tiling.core.tiles_repository import TilesRepository
 from truchet_tiling.core.tile import Tile
 from cairo import Context, ImageSurface
 import cairosvg
 
 from truchet_tiling.core.utils import int_to_hex_color
 
-patterns = Pattern()
+tiles = TilesRepository()
 
 class Renderer:
     def __init__(self, ctx: Context, cell_size: int, stroke_color: int, stroke_width: int):
@@ -25,7 +25,7 @@ class Renderer:
         y = tile.y
         s = tile.size
         screen_size = s * self.cell_size
-        svg_data = patterns.get(s, tile.type)
+        svg_data = tiles.get(s, tile.type)
         for i, stroke in enumerate(tile.strokes):
             color_name = f'{{fill{i}}}'
             new_color = int_to_hex_color(stroke.color) if stroke.color else "#ffffff"

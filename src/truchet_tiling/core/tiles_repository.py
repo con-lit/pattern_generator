@@ -1,8 +1,11 @@
 import importlib.resources
 import truchet_tiling.static.truchet_tiles_01 as tt
+import truchet_tiling.static.triangles as triangles
 from truchet_tiling.commons.enums import TileType
+import svgwrite
+from xml.etree import ElementTree as ET
 
-class Pattern:
+class TilesRepository:
     def __init__(self):
         files = ["arcs1", "arcs2", "arcs4", "lines1", "lines2", "lines4"]
         self._files = {}
@@ -25,4 +28,10 @@ class Pattern:
                 raise ValueError("Wrong tile type")
         svg_data = self._files[key]
         return svg_data
+    
+    def get_triangle(self) -> ET.Element:
+        with importlib.resources.path(triangles, 'triangle.svg') as fspath:
+            tree = ET.parse(fspath)
+            root = tree.getroot()
+            return root
 
