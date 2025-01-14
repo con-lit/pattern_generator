@@ -1,45 +1,55 @@
 import argparse
-from io import BytesIO
-from cairo import FORMAT_ARGB32, Context, ImageSurface
+import random
 import math
-from xml.etree import ElementTree as ET
+import svgwrite
+from io import StringIO
+from svgpathtools import svg2paths
 
-import cairo
-import cairosvg
-
+from truchet_tiling.core.svg_utils import translate_path
 from truchet_tiling.core.tiles_repository import TilesRepository
+from truchet_tiling.core.trees.tritree import TriTree
 
 tiles = TilesRepository()
 
-def draw_grid(ctx:Context, rows:int, cols:int, cell_width:int, cell_height:int):
+def create_tritrees(rows:int, cols:int, cell_width:int, cell_height:int):
+    trees = []
+    y=0
     for j in range(cols):
+        x = 0
         for i in range(rows):
-            x = i * cell_width/2
-            y = j * cell_height
-            reflection = bool((i + j % 2) % 2)
-            svg = tiles.get_triangle()
-            scale = int(svg.get("viewBox").split(" ")[2])/cell_width
-            if reflection:
-                transform = f"scale(1, -1) translate(0, {-scale * cell_height})"
-            else:
-                transform = f"scale(1, 1) translate(0, )"
-            svg.set(
-                "transform",
-                transform
+            trees.add(
+                TriTree(
+                    [(x, y), (x+cell_width, y), (x+cell_width/2, y+cell_height)],
+                    depth=3, 
+                    reflected=bool((i + j % 2) % 2),
+                )
             )
-            svg_data = ET.tostring(svg, encoding='utf-8', method='xml')
-            bytes = cairosvg.svg2png(
-                bytestring=svg_data,
-                output_height=cell_height + 1,
-                output_width=cell_width + 1,
-            )  
-            surface = ImageSurface.create_from_png(BytesIO(bytes))
-            ctx.save()
-            ctx.translate(x , y)
-            ctx.set_source_surface(surface, 0, 0)
-            ctx.paint()
-            ctx.restore()
-    
+            x += cell_width/2
+        y += cell_height
+    return trees
+            
+
+def draw_svg_grid(drw, rows:int, cols:int, cell_width:int, cell_height:int):
+    y = 0
+    for j in range(cols):
+        x = 0
+        for i in range(rows):
+            scale_y = -1 if bool((i + j % 2) % 2) else 1
+            rotation = random.choice([0, 120, 240])
+            svg = tiles.get_triangle(rotation, scale_y = scale_y)
+            paths, attributes = svg2paths(StringIO(svg))
+            for path in paths:
+                translated_path = translate_path(path, tx=x, ty=y)
+                path_string = translated_path.d()
+                path_element = svgwrite.path.Path(
+                    d=path_string,
+                    stroke="black",
+                    fill="none",
+                    stroke_width=1
+                )
+                drw.add(path_element)
+            x += math.floor(cell_width/2)
+        y += math.floor(cell_height)
 
 def main():
     parser = argparse.ArgumentParser(description="Generate a PNG bitmap and save it to a file.")
@@ -47,29 +57,22 @@ def main():
     parser.add_argument('--height', type=int, default=4, help="Height of the bitmap")
     parser.add_argument('--cell', type=int, default=50, help="Size of a cell")
     parser.add_argument('--color', type=str, default='#00ff00', help="Color of the bitmap (e.g., 'red', '#00ff00')")
-    parser.add_argument('--output_file', type=str, default='output.png', help="Output file path")
+    parser.add_argument('--output_file', type=str, default='output.svg', help="Output file path")
 
     args = parser.parse_args()
     columns = args.width
     rows = args.height
     cell_size = args.cell
-    cell_width=cell_size
-    cell_hight=cell_hight=3*cell_size/(4*math.cos(math.pi/6))
+    cell_width=200
+    cell_hight=3*cell_width/(4*math.cos(math.pi/6))
     image_width = math.ceil((columns / 2 + 1) * cell_width)
     image_height = math.ceil(rows * cell_hight)
-    surface = ImageSurface(FORMAT_ARGB32, image_width, image_height)
-    draw_grid(Context(surface), columns, rows, cell_width, cell_hight)
+    drawing = svgwrite.Drawing(size=("100%", "100%"))
+    drawing.viewbox(*[0, 0, image_width, image_height])
+    trees = create_tritrees(rows, columns, cell_width, cell_hight)
 
-    with cairo.ImageSurface(
-        cairo.FORMAT_ARGB32,
-        image_width - math.floor(3*cell_width/2), 
-        image_height
-    ) as cropped_surface:
-        cropped_ctx = cairo.Context(cropped_surface)
-        cropped_ctx.translate(- cell_width/2, 0)
-        cropped_ctx.set_source_surface(surface)
-        cropped_ctx.paint()
-        cropped_surface.write_to_png('output_file.png')
-
+    draw_svg_grid(drawing, columns, rows, cell_width, cell_hight)
+    drawing.saveas(args.output_file)
+    
 if __name__ == "__main__":
     main()

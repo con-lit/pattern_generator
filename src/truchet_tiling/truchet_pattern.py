@@ -8,7 +8,7 @@ from truchet_tiling.core.connector import Connector
 from truchet_tiling.core.renderer import Renderer
 from truchet_tiling.fills.perlin import Perlin
 from truchet_tiling.core.generators import ColorGenerator, DesignGenerator
-from truchet_tiling.core.quadtree import QuadTree
+from truchet_tiling.core.trees.quadtree import QuadTree
 from truchet_tiling.core.utils import cairo_to_png, divide_surface
 
     

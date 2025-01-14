@@ -1,0 +1,70 @@
+import math
+from typing import Literal
+from svgpathtools import svg2paths, Line, CubicBezier, Path
+
+def transform_complex_point(z, sx, sy, angle_degrees, tx, ty):
+    """
+    Applies scale, rotation, and translation to a complex coordinate z.
+
+    :param z: complex number representing the original point (x + y*i).
+    :param sx: scale factor in the x-direction.
+    :param sy: scale factor in the y-direction.
+    :param angle_degrees: rotation angle in degrees (counterclockwise).
+    :param tx: translation in the x-direction.
+    :param ty: translation in the y-direction.
+    :return: transformed complex number (x' + y'*i).
+    """
+    # 1) Scale
+    x_scaled = z.real * sx
+    y_scaled = z.imag * sy
+    z_scaled = complex(x_scaled, y_scaled)
+
+    # 2) Rotate
+    # Convert degrees to radians
+    angle_radians = math.radians(angle_degrees)
+    # Multiply by e^(i * angle)
+    z_rotated = z_scaled * complex(math.cos(angle_radians), math.sin(angle_radians))
+
+    # 3) Translate
+    x_final = z_rotated.real + tx
+    y_final = z_rotated.imag + ty
+
+    return complex(x_final, y_final)
+
+def translate_path(path, tx=0, ty=0, sx=1, sy=1, r=0) -> Path:
+    new_segments = []
+    for segment in path:
+        new_segment = segment
+        if isinstance(segment, Line):
+            start = segment.start
+            end = segment.end
+            new_start = transform_complex_point(start, sx, sy, r, tx, ty)
+            new_end = transform_complex_point(end, sx, sy, r, tx, ty)
+            new_segment = Line(new_start, new_end)
+        elif isinstance(segment, CubicBezier):
+            start = segment.start
+            control1 = segment.control1
+            control2 = segment.control2
+            end = segment.end
+            new_start = transform_complex_point(start, sx, sy, r, tx, ty)
+            new_control1 = transform_complex_point(control1, sx, sy, r, tx, ty)
+            new_control2 = transform_complex_point(control2, sx, sy, r, tx, ty)
+            new_end = transform_complex_point(end, sx, sy, r, tx, ty)
+            new_segment = CubicBezier(new_start, new_control1, new_control2, new_end)
+        new_segments.append(new_segment)
+    return Path(*new_segments)
+
+def get_trialgles_translation(r: Literal[0, 120, 240], width, height, scale_x=1, scale_y=1):
+    match r:
+        case 120:
+            tx=width if (scale_x == 1 and scale_y == 1) else width/2
+            ty=0 if scale_x == 1 else height
+        case 240:
+            tx=width/2
+            if (scale_x == -1 and scale_y == 1): tx=0
+            if (scale_x == 1 and scale_y == -1): tx=width
+            ty=height if scale_x == 1 else 0
+        case 0:
+            tx=0 if scale_x == 1 else width
+            ty=0 if scale_y == 1 else height
+    return tx,ty

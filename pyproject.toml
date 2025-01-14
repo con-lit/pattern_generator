@@ -11,7 +11,7 @@ authors = [
 description = "A truchet tiles generator"
 readme = "README.md"
 requires-python = ">=3.8"
-dependencies = ["pillow", "pycairo", "cairosvg", "numpy", "perlin_noise"]
+dependencies = ["pillow", "pycairo", "cairosvg", "numpy", "perlin_noise", "svgpathtools"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
