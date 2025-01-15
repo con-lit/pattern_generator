@@ -5,29 +5,44 @@ class TriTree:
         self.vertices = vertices
         self.depth = depth
         self.reflected = reflected
-        pass
+        if self.can_be_divided:
+            self.divide_surface()
+        else: 
+            self.create_tile()
 
-    def midpoint(self, p1, p2):
+    def _midpoint(self, p1, p2):
         return ((p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2)
     
-    def _divide_surface(self):
-        if depth == 0:
-            # Base case: Draw the triangle
-            x = [vertices[0][0], vertices[1][0], vertices[2][0], vertices[0][0]]
-            y = [vertices[0][1], vertices[1][1], vertices[2][1], vertices[0][1]]
-            color = "red" if reflected else "blue"
+    @property
+    def can_be_divided(self):
+        return self.depth > 0
+    
+    @property
+    def position(self):
+        x = min(self.vertices, key=lambda p: p[0])[0]
+        y = min(self.vertices, key=lambda p: p[1])[1]
+        return (x, y)
+    
+    def divide_surface(self):
+        mid1 = self._midpoint(self.vertices[0], self.vertices[1])
+        mid2 = self._midpoint(self.vertices[1], self.vertices[2])
+        mid3 = self._midpoint(self.vertices[2], self.vertices[0])
+        next_depth = self.depth - 1
 
+        self.children = [
+            TriTree([self.vertices[0], mid1, mid3], next_depth, self.reflected),
+            TriTree([mid1, self.vertices[1], mid2], next_depth, self.reflected),
+            TriTree([mid3, mid2, self.vertices[2]], next_depth, self.reflected),
+            TriTree([mid1, mid2, mid3], next_depth, not self.reflected),
+        ]
+
+    def create_tile(self):
+        x = [self.vertices[0][0], self.vertices[1][0], self.vertices[2][0]]
+        y = [self.vertices[0][1], self.vertices[1][1], self.vertices[2][1]]
+
+    def draw_tile(self, callback, drawing):
+        if self.children:
+            for child in self.children:
+                child.draw_tile(callback, drawing)
         else:
-            # Get the midpoints of each side
-            mid1 = self.midpoint(vertices[0], vertices[1])
-            mid2 = self.midpoint(vertices[1], vertices[2])
-            mid3 = self.midpoint(vertices[2], vertices[0])
-            
-            # Recursively subdivide each of the 4 smaller triangles
-            self.children = [
-
-            ]
-            self.subdivide_triangle([vertices[0], mid1, mid3], depth - 1, reflected)
-            self.subdivide_triangle([mid1, vertices[1], mid2], depth - 1, reflected)
-            self.subdivide_triangle([mid3, mid2, vertices[2]], depth - 1, reflected)
-            self.subdivide_triangle([mid1, mid2, mid3], depth - 1, not reflected)
+            callback(drawing, self.position, self.reflected, self.depth)

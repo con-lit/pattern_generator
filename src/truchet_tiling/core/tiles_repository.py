@@ -1,5 +1,5 @@
 import importlib.resources
-from truchet_tiling.core.svg_utils import get_trialgles_translation, translate_path
+from truchet_tiling.core.svg_utils import get_triangles_translation, translate_path
 import truchet_tiling.static.truchet_tiles_01 as tt
 import truchet_tiling.static.triangles as triangles
 from truchet_tiling.commons.enums import TileType
@@ -10,6 +10,11 @@ from svgpathtools import svg2paths
 class TilesRepository:
     def __init__(self):
         files = ["arcs1", "arcs2", "arcs4", "lines1", "lines2", "lines4"]
+        self.triangles = {
+            0: "triangle_1.svg",
+            1: "triangle_2.svg",
+            2: "triangle_4.svg",
+        }
         self._files = {}
         #print current directory
         for file in files:
@@ -31,8 +36,10 @@ class TilesRepository:
         svg_data = self._files[key]
         return svg_data
     
-    def get_triangle(self, r, scale_x=1, scale_y=1) -> str:
-        with importlib.resources.path(triangles, 'triangle.svg') as fspath:
+    def get_triangle(self, version, rotation, scale_x=1, scale_y=1) -> str:
+        if version not in self.triangles:
+            raise ValueError(f"Invalid triangle version {version}")
+        with importlib.resources.path(triangles, self.triangles[version]) as fspath:
             tree = ET.parse(fspath)
             root = tree.getroot()
 
@@ -47,8 +54,8 @@ class TilesRepository:
             paths, attributes = svg2paths(fspath)
 
             for path in paths:
-                tx, ty = get_trialgles_translation(r, vb_width, vb_height, scale_x, scale_y)
-                translated_path = translate_path(path, r=r, tx=tx, ty=ty, sx=scale_x, sy=scale_y)
+                tx, ty = get_triangles_translation(rotation, vb_width, vb_height, scale_x, scale_y)
+                translated_path = translate_path(path, r=rotation, tx=tx, ty=ty, sx=scale_x, sy=scale_y)
                 path_string = translated_path.d()
                 path_element = svgwrite.path.Path(
                     d=path_string,

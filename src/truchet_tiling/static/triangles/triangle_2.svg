@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="vectors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 86.6">
+  <path id="p1" d="M6.25,10.82c3.74-2.16,6.25-6.19,6.25-10.82" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p2" d="M18.75,32.47C29.95,25.99,37.5,13.88,37.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p3" d="M57.49,24.54c3.22-7.53,5.01-15.83,5.01-24.54" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p4" d="M93.75,10.82c-3.74-2.16-6.25-6.19-6.25-10.82" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p5" d="M81.25,32.47c-11.21-6.48-18.75-18.59-18.75-32.47" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p6" d="M43.75,75.79c3.74-2.15,8.49-2.32,12.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p7" d="M31.25,54.13c11.22-6.46,25.48-6.94,37.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p8" d="M18.75,32.48c18.7-10.77,42.46-11.57,62.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+</svg>

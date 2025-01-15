@@ -1,6 +1,8 @@
 import math
 from typing import Literal
-from svgpathtools import svg2paths, Line, CubicBezier, Path
+from svgpathtools import Line, CubicBezier, Path, svg2paths
+import svgwrite.path
+from xml.etree import ElementTree as ET
 
 def transform_complex_point(z, sx, sy, angle_degrees, tx, ty):
     """
@@ -54,7 +56,7 @@ def translate_path(path, tx=0, ty=0, sx=1, sy=1, r=0) -> Path:
         new_segments.append(new_segment)
     return Path(*new_segments)
 
-def get_trialgles_translation(r: Literal[0, 120, 240], width, height, scale_x=1, scale_y=1):
+def get_triangles_translation(r: Literal[0, 120, 240], width, height, scale_x=1, scale_y=1):
     match r:
         case 120:
             tx=width if (scale_x == 1 and scale_y == 1) else width/2
@@ -68,3 +70,31 @@ def get_trialgles_translation(r: Literal[0, 120, 240], width, height, scale_x=1,
             tx=0 if scale_x == 1 else width
             ty=0 if scale_y == 1 else height
     return tx,ty
+
+def create_svg(input:str, rotation:Literal[0, 120, 240]=0, scale_x:int=1, scale_y:int=1):
+    tree = ET.parse(input)
+    root = tree.getroot()
+
+    width = root.get('width', '100%')
+    height = root.get('height', '100%')
+    view_box = root.get('viewBox', '0 0 100 100')
+    vb_x, vb_y, vb_width, vb_height = map(float, view_box.split())
+
+    dwg = svgwrite.Drawing(size=(width, height))
+    dwg.viewbox(*[vb_x, vb_y, vb_width, vb_height])
+
+    paths, attributes = svg2paths(input)
+
+    for path in paths:
+        tx, ty = get_triangles_translation(rotation, vb_width, vb_height, scale_x, scale_y)
+        translated_path = translate_path(path, r=rotation, tx=tx, ty=ty, sx=scale_x, sy=scale_y)
+        path_string = translated_path.d()
+        path_element = svgwrite.path.Path(
+            d=path_string,
+            stroke="black",
+            fill="none",
+            stroke_width=1
+        )
+        dwg.add(path_element)
+
+    return dwg.tostring()
