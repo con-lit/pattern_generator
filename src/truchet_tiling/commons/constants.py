@@ -1,2 +1,7 @@
+import math
+
 STROKES_PER_CELL = 2
 MAX_QUAD_SIZE = 4
+
+TRI_CELL_WIDTH=200
+TRI_CELL_HEIGHT=3*TRI_CELL_WIDTH/(4*math.cos(math.pi/6))

@@ -1,10 +1,14 @@
+from truchet_tiling.fills.perlin import Perlin
+
+
 class TriTree:
     children = []
     
-    def __init__(self, vertices:list, depth:int, reflected:bool):
+    def __init__(self, vertices:list, depth:int, reflected:bool, matrix:Perlin):
         self.vertices = vertices
         self.depth = depth
         self.reflected = reflected
+        self.matrix = matrix
         if self.can_be_divided:
             self.divide_surface()
         else: 
@@ -15,7 +19,8 @@ class TriTree:
     
     @property
     def can_be_divided(self):
-        return self.depth > 0
+        value = self.matrix.get_average(self.vertices)
+        return value > 0 and self.depth > 0
     
     @property
     def position(self):
@@ -30,10 +35,10 @@ class TriTree:
         next_depth = self.depth - 1
 
         self.children = [
-            TriTree([self.vertices[0], mid1, mid3], next_depth, self.reflected),
-            TriTree([mid1, self.vertices[1], mid2], next_depth, self.reflected),
-            TriTree([mid3, mid2, self.vertices[2]], next_depth, self.reflected),
-            TriTree([mid1, mid2, mid3], next_depth, not self.reflected),
+            TriTree([self.vertices[0], mid1, mid3], next_depth, self.reflected, self.matrix),
+            TriTree([mid1, self.vertices[1], mid2], next_depth, self.reflected, self.matrix),
+            TriTree([mid3, mid2, self.vertices[2]], next_depth, self.reflected, self.matrix),
+            TriTree([mid1, mid2, mid3], next_depth, not self.reflected, self.matrix),
         ]
 
     def create_tile(self):

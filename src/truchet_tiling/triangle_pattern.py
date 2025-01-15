@@ -5,15 +5,14 @@ import svgwrite
 from io import StringIO
 from svgpathtools import svg2paths
 
+from truchet_tiling.commons.constants import TRI_CELL_HEIGHT, TRI_CELL_WIDTH
 from truchet_tiling.core.drawing import Drawing
 from truchet_tiling.core.svg_utils import get_triangles_translation, translate_path
 from truchet_tiling.core.tiles_repository import TilesRepository
 from truchet_tiling.core.trees.tritree import TriTree
+from truchet_tiling.fills.perlin import Perlin
 
 tiles = TilesRepository()
-
-def demo_draw(drawing:Drawing, vertices:list, position:tuple):
-    pass
 
 def draw_triangle( drawing:Drawing, position:tuple, reflected:bool, depth:int):
     rotation = random.choice([0, 120, 240])
@@ -30,51 +29,22 @@ def draw_triangle( drawing:Drawing, position:tuple, reflected:bool, depth:int):
         )
         drawing.add(path_element)
 
-def create_tritrees(rows:int, cols:int, cell_width:int, cell_height:int):
+def create_tritrees(columns:int, rows:int, matrix:Perlin):
     trees = []
     y=0
-    for j in range(cols):
+    for j in range(rows):
         x = 0
-        for i in range(rows):
+        for i in range(columns):
             reflected = bool((i + j % 2) % 2)
             if reflected:
-                vertices = [(x+cell_width/2, y), (x, y+cell_height), (x+cell_width, y+cell_height)] 
+                vertices = [(x+TRI_CELL_WIDTH/2, y), (x, y+TRI_CELL_HEIGHT), (x+TRI_CELL_WIDTH, y+TRI_CELL_HEIGHT)] 
             else:
-                vertices = [(x, y), (x+cell_width, y), (x+cell_width/2, y+cell_height)]
-            trees.append(
-                TriTree(
-                    vertices,
-                    depth=2, 
-                    reflected=reflected,
-                )
-            )
-            x += cell_width/2
-        y += cell_height
+                vertices = [(x, y), (x+TRI_CELL_WIDTH, y), (x+TRI_CELL_WIDTH/2, y+TRI_CELL_HEIGHT)]
+            trees.append(TriTree(vertices, depth=2, reflected=reflected, matrix=matrix))
+            x += TRI_CELL_WIDTH/2
+        y += TRI_CELL_HEIGHT
     return trees
             
-
-def draw_svg_grid(drw, rows:int, cols:int, cell_width:int, cell_height:int):
-    y = 0
-    for j in range(cols):
-        x = 0
-        for i in range(rows):
-            scale_y = -1 if bool((i + j % 2) % 2) else 1
-            rotation = random.choice([0, 120, 240])
-            svg = tiles.get_triangle(rotation, scale_y = scale_y)
-            paths, attributes = svg2paths(StringIO(svg))
-            for path in paths:
-                translated_path = translate_path(path, tx=x, ty=y)
-                path_string = translated_path.d()
-                path_element = svgwrite.path.Path(
-                    d=path_string,
-                    stroke="black",
-                    fill="none",
-                    stroke_width=1
-                )
-                drw.add(path_element)
-            x += math.floor(cell_width/2)
-        y += math.floor(cell_height)
-
 def main():
     parser = argparse.ArgumentParser(description="Generate a PNG bitmap and save it to a file.")
     parser.add_argument('--width', type=int, default=6, help="Width of the bitmap")
@@ -87,13 +57,15 @@ def main():
     columns = args.width
     rows = args.height
     cell_size = args.cell
-    cell_width=200
-    cell_hight=3*cell_width/(4*math.cos(math.pi/6))
-    image_width = math.ceil((columns / 2 + 1) * cell_width)
-    image_height = math.ceil(rows * cell_hight)
-    drawing = Drawing(image_width, image_height)
+    
+    drawing_width = TRI_CELL_WIDTH * (math.ceil(columns / 2) + (1 - columns % 2) / 2)
+    drawing_height = rows * TRI_CELL_HEIGHT
+    print("Image size: ", drawing_width, drawing_height)
+    
+    matrix = Perlin(math.ceil(drawing_width), math.ceil(drawing_height), octaves=4)
+    drawing = Drawing(drawing_width, drawing_height)
 
-    trees = create_tritrees(rows, columns, cell_width, cell_hight)
+    trees = create_tritrees(columns, rows, matrix)
 
     for tree in trees:
         tree.draw_tile(draw_triangle, drawing)
