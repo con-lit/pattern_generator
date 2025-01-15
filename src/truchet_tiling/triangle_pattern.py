@@ -10,7 +10,8 @@ from truchet_tiling.core.drawing import Drawing
 from truchet_tiling.core.svg_utils import get_triangles_translation, translate_path
 from truchet_tiling.core.tiles_repository import TilesRepository
 from truchet_tiling.core.trees.tritree import TriTree
-from truchet_tiling.fills.perlin import Perlin
+from truchet_tiling.core.fills.gradient import Gradient
+from truchet_tiling.core.fills.perlin import Perlin
 
 tiles = TilesRepository()
 
@@ -62,7 +63,9 @@ def main():
     drawing_height = rows * TRI_CELL_HEIGHT
     print("Image size: ", drawing_width, drawing_height)
     
-    matrix = Perlin(math.ceil(drawing_width), math.ceil(drawing_height), octaves=4)
+    matrix = Perlin(math.ceil(drawing_width), math.ceil(drawing_height), octaves=5)
+    # matrix = Gradient('linear', math.ceil(drawing_width), math.ceil(drawing_height))
+
     drawing = Drawing(drawing_width, drawing_height)
 
     trees = create_tritrees(columns, rows, matrix)

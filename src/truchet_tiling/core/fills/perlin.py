@@ -31,9 +31,13 @@ class Perlin:
             x = (1 - u - v) * v1[0] + u * v2[0] + v * v3[0]
             y = (1 - u - v) * v1[1] + u * v2[1] + v * v3[1]
             samples.append((x, y))
-        return samples
+        values = [self._data[int(x), int(y)] for x, y in samples]
+        return values
     
     def get_average(self, vertices:list):
-        samples = self.sample_points_in_triangle(vertices[0], vertices[1], vertices[2])
-        color_values = [self._data[int(x), int(y)] for x, y in samples]
+        color_values = self.sample_points_in_triangle(vertices[0], vertices[1], vertices[2])
         return sum(color_values) / len(color_values)
+    
+    def get_max(self, vertices:list):
+        color_values = self.sample_points_in_triangle(vertices[0], vertices[1], vertices[2])
+        return max(color_values)

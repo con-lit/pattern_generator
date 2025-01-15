@@ -1,10 +1,10 @@
-from truchet_tiling.fills.perlin import Perlin
+from truchet_tiling.core.fills.gradient import Gradient
 
 
 class TriTree:
     children = []
     
-    def __init__(self, vertices:list, depth:int, reflected:bool, matrix:Perlin):
+    def __init__(self, vertices:list, depth:int, reflected:bool, matrix:Gradient):
         self.vertices = vertices
         self.depth = depth
         self.reflected = reflected
@@ -19,7 +19,7 @@ class TriTree:
     
     @property
     def can_be_divided(self):
-        value = self.matrix.get_average(self.vertices)
+        value = self.matrix.get_max(self.vertices)
         return value > 0 and self.depth > 0
     
     @property
