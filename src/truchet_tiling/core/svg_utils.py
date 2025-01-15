@@ -84,8 +84,12 @@ def create_svg(input:str, rotation:Literal[0, 120, 240]=0, scale_x:int=1, scale_
     dwg.viewbox(*[vb_x, vb_y, vb_width, vb_height])
 
     paths, attributes = svg2paths(input)
+    for a in attributes:
+        print(a)
+    print('---')
 
     for path in paths:
+        print(path)
         tx, ty = get_triangles_translation(rotation, vb_width, vb_height, scale_x, scale_y)
         translated_path = translate_path(path, r=rotation, tx=tx, ty=ty, sx=scale_x, sy=scale_y)
         path_string = translated_path.d()

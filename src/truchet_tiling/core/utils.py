@@ -1,7 +1,14 @@
+import random
+import string
 from PIL import Image
 import cairo
 from cairo import ImageSurface
 from io import BytesIO
+
+alphabet = string.ascii_lowercase + string.digits
+
+def random_uuid():
+    return ''.join(random.choices(alphabet, k=8))
 
 def divide_surface(l, s, m, max_cells):
     k = l // s + 1

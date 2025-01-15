@@ -1,14 +1,18 @@
+from truchet_tiling.core.connector_new import ConnectorNew
 from truchet_tiling.core.fills.gradient import Gradient
+from truchet_tiling.core.utils import random_uuid
 
 
 class TriTree:
     children = []
     
-    def __init__(self, vertices:list, depth:int, reflected:bool, matrix:Gradient):
+    def __init__(self, vertices:list, depth:int, reflected:bool, matrix:Gradient, connector:ConnectorNew):
+        self.uuid = None
         self.vertices = vertices
         self.depth = depth
         self.reflected = reflected
         self.matrix = matrix
+        self.connector = connector
         if self.can_be_divided:
             self.divide_surface()
         else: 
@@ -35,19 +39,40 @@ class TriTree:
         next_depth = self.depth - 1
 
         self.children = [
-            TriTree([self.vertices[0], mid1, mid3], next_depth, self.reflected, self.matrix),
-            TriTree([mid1, self.vertices[1], mid2], next_depth, self.reflected, self.matrix),
-            TriTree([mid3, mid2, self.vertices[2]], next_depth, self.reflected, self.matrix),
-            TriTree([mid1, mid2, mid3], next_depth, not self.reflected, self.matrix),
+            TriTree([self.vertices[0], mid1, mid3], next_depth, self.reflected, self.matrix, self.connector),
+            TriTree([mid1, self.vertices[1], mid2], next_depth, self.reflected, self.matrix, self.connector),
+            TriTree([mid3, mid2, self.vertices[2]], next_depth, self.reflected, self.matrix, self.connector),
+            TriTree([mid1, mid2, mid3], next_depth, not self.reflected, self.matrix, self.connector),
         ]
 
+    def register_connection(self, point1:tuple, point2:tuple, level:int):
+        if level > 1:
+            mid = self._midpoint(point1, point2)
+            p1 = (point1, mid)
+            p2 = (mid, point2)
+            self.register_connection(*p1, level = level - 1)
+            self.register_connection(*p2, level = level - 1)
+        else:
+            x1, y1 = map(int, point1)
+            x2, y2 = map(int, point2)
+            if x1 != x2:
+                id = f"{x1}-{y1}-{x2}-{y2}" if x1 < x2 else f"{x2}-{y2}-{x1}-{y1}"
+            else:
+                id = f"{x1}-{y1}-{x2}-{y2}" if y1 < y2 else f"{x2}-{y2}-{x1}-{y1}"
+            self.connector.register_connection(id)
+            
+
     def create_tile(self):
-        x = [self.vertices[0][0], self.vertices[1][0], self.vertices[2][0]]
-        y = [self.vertices[0][1], self.vertices[1][1], self.vertices[2][1]]
+        interfaces = 2 ** self.depth
+        self.uuid = random_uuid()
+        for i, v in enumerate(self.vertices):
+            side = (v, self.vertices[(i + 1) % len(self.vertices)])
+            self.register_connection(*side, level = interfaces)
+        
 
     def draw_tile(self, callback, drawing):
         if self.children:
             for child in self.children:
                 child.draw_tile(callback, drawing)
         else:
-            callback(drawing, self.position, self.reflected, self.depth)
+            callback(drawing, self.position, self.reflected, self.depth, self.uuid)

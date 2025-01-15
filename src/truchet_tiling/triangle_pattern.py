@@ -6,6 +6,7 @@ from io import StringIO
 from svgpathtools import svg2paths
 
 from truchet_tiling.commons.constants import TRI_CELL_HEIGHT, TRI_CELL_WIDTH
+from truchet_tiling.core.connector_new import ConnectorNew
 from truchet_tiling.core.drawing import Drawing
 from truchet_tiling.core.svg_utils import get_triangles_translation, translate_path
 from truchet_tiling.core.tiles_repository import TilesRepository
@@ -15,22 +16,23 @@ from truchet_tiling.core.fills.perlin import Perlin
 
 tiles = TilesRepository()
 
-def draw_triangle( drawing:Drawing, position:tuple, reflected:bool, depth:int):
+def draw_triangle( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str):
     rotation = random.choice([0, 120, 240])
     svg = tiles.get_triangle(depth, rotation, scale_y = -1 if reflected else 1)
     paths, attributes = svg2paths(StringIO(svg))
-    for path in paths:
+    for i, path in enumerate(paths):
         translated_path = translate_path(path, tx=position[0], ty=position[1])
         path_string = translated_path.d()
         path_element = svgwrite.path.Path(
             d=path_string,
             stroke="black",
             fill="none",
-            stroke_width=1
+            stroke_width=1,
+            id=f'{uuid}-{attributes[i]["id"]}'
         )
         drawing.add(path_element)
 
-def create_tritrees(columns:int, rows:int, matrix:Perlin):
+def create_tritrees(columns:int, rows:int, matrix:Perlin, connector:ConnectorNew):
     trees = []
     y=0
     for j in range(rows):
@@ -41,7 +43,7 @@ def create_tritrees(columns:int, rows:int, matrix:Perlin):
                 vertices = [(x+TRI_CELL_WIDTH/2, y), (x, y+TRI_CELL_HEIGHT), (x+TRI_CELL_WIDTH, y+TRI_CELL_HEIGHT)] 
             else:
                 vertices = [(x, y), (x+TRI_CELL_WIDTH, y), (x+TRI_CELL_WIDTH/2, y+TRI_CELL_HEIGHT)]
-            trees.append(TriTree(vertices, depth=2, reflected=reflected, matrix=matrix))
+            trees.append(TriTree(vertices, depth=2, reflected=reflected, matrix=matrix, connector=connector))
             x += TRI_CELL_WIDTH/2
         y += TRI_CELL_HEIGHT
     return trees
@@ -63,12 +65,13 @@ def main():
     drawing_height = rows * TRI_CELL_HEIGHT
     print("Image size: ", drawing_width, drawing_height)
     
-    matrix = Perlin(math.ceil(drawing_width), math.ceil(drawing_height), octaves=5)
+    matrix = Perlin(math.ceil(drawing_width), math.ceil(drawing_height), octaves=4)
+    connector = ConnectorNew()
     # matrix = Gradient('linear', math.ceil(drawing_width), math.ceil(drawing_height))
 
     drawing = Drawing(drawing_width, drawing_height)
 
-    trees = create_tritrees(columns, rows, matrix)
+    trees = create_tritrees(columns, rows, matrix, connector)
 
     for tree in trees:
         tree.draw_tile(draw_triangle, drawing)

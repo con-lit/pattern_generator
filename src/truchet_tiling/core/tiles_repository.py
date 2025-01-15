@@ -53,7 +53,8 @@ class TilesRepository:
 
             paths, attributes = svg2paths(fspath)
 
-            for path in paths:
+            for i, path in enumerate(paths):
+                id = attributes[i]["id"]
                 tx, ty = get_triangles_translation(rotation, vb_width, vb_height, scale_x, scale_y)
                 translated_path = translate_path(path, r=rotation, tx=tx, ty=ty, sx=scale_x, sy=scale_y)
                 path_string = translated_path.d()
@@ -61,7 +62,8 @@ class TilesRepository:
                     d=path_string,
                     stroke="black",
                     fill="none",
-                    stroke_width=1
+                    stroke_width=1,
+                    id=id
                 )
                 dwg.add(path_element)
             
