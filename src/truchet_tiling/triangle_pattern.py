@@ -16,7 +16,7 @@ from truchet_tiling.core.fills.perlin import Perlin
 
 tiles = TilesRepository()
 
-def draw( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str):
+def draw( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str, connector:ConnectorNew):
     rotation = random.choice([0, 120, 240])
     svg = tiles.get_triangle(depth, rotation, scale_y = -1 if reflected else 1)
     paths, attributes = svg2paths(StringIO(svg))
@@ -25,6 +25,11 @@ def draw( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str):
         translated_path = translate_path(path, tx=position[0], ty=position[1])
         begin = translated_path.start
         end = translated_path.end
+        connector.register_path(
+            (begin.real, begin.imag),
+            (end.real, end.imag),
+            path_id
+        )
         print(f"Path {path_id} starts at {begin} and ends at {end}")
         path_string = translated_path.d()
         path_element = svgwrite.path.Path(
@@ -47,7 +52,13 @@ def create_tritrees(columns:int, rows:int, matrix:Perlin, connector:ConnectorNew
                 vertices = [(x+TRI_CELL_WIDTH/2, y), (x, y+TRI_CELL_HEIGHT), (x+TRI_CELL_WIDTH, y+TRI_CELL_HEIGHT)] 
             else:
                 vertices = [(x, y), (x+TRI_CELL_WIDTH, y), (x+TRI_CELL_WIDTH/2, y+TRI_CELL_HEIGHT)]
-            trees.append(TriTree(vertices, depth=2, reflected=reflected, matrix=matrix, connector=connector))
+            trees.append(TriTree(
+                vertices, 
+                depth=2,
+                reflected=reflected,    
+                matrix=matrix,
+                connector=connector,
+            ))
             x += TRI_CELL_WIDTH/2
         y += TRI_CELL_HEIGHT
     return trees
@@ -58,7 +69,7 @@ def main():
     parser.add_argument('--height', type=int, default=4, help="Height of the bitmap")
     parser.add_argument('--cell', type=int, default=50, help="Size of a cell")
     parser.add_argument('--color', type=str, default='#00ff00', help="Color of the bitmap (e.g., 'red', '#00ff00')")
-    parser.add_argument('--output_file', type=str, default='output.svg', help="Output file path")
+    parser.add_argument('--output', type=str, default='output.svg', help="Output file path")
 
     args = parser.parse_args()
     columns = args.width
@@ -80,7 +91,9 @@ def main():
     for tree in trees:
         tree.draw_tile(draw, drawing)
 
-    drawing.save(args.output_file)
+    drawing.save(args.output)
+    clusters = connector.cluster_points()
+    print(clusters)
     
 if __name__ == "__main__":
     main()

@@ -75,4 +75,11 @@ class TriTree:
             for child in self.children:
                 child.draw_tile(callback, drawing)
         else:
-            callback(drawing, self.position, self.reflected, self.depth, self.uuid)
+            callback(
+                drawing,
+                self.position,
+                self.reflected,
+                self.depth,
+                self.uuid,
+                self.connector,
+            )
