@@ -20,11 +20,11 @@ class DrawingModel:
 
     def register_path(self, path_id:str, path: Path, start:tuple, end:tuple):
         line_id = random_uuid()
-        self.path_line[path_id] = {path_id: line_id}
+        self.path_line[path_id] = line_id
         self.lines[line_id] = path
 
-        self.points.append([line_id, start])
-        self.points.append([line_id, end])
+        self.points.append([path_id, start])
+        self.points.append([path_id, end])
 
     def connect_lines(self, radius:float = 0.1):
         # Extract (x, y) coordinates from [id, (x, y)]
@@ -42,6 +42,14 @@ class DrawingModel:
 
         for cluster in clusters.values():
             for i in range(len(cluster) - 1):
-                pair = (cluster[i][0], cluster[i + 1][0])
-                print(pair)
+                path_1_id, path_2_id = cluster[i][0], cluster[i+1][0]
+                line_1_id, line_2_id = self.path_line[path_1_id], self.path_line[path_2_id]
+                if line_1_id == line_2_id:
+                    continue
+                merged_line = Path(*self.lines[line_1_id], *self.lines[line_2_id])
+                merged_line_id = 'merged-' + random_uuid()
+                self.path_line = {k: merged_line_id if v == line_1_id or v == line_2_id else v for k, v in self.path_line.items()}
+                self.lines[merged_line_id] = merged_line
+                del self.lines[line_1_id]
+                del self.lines[line_2_id]
                 

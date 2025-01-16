@@ -16,7 +16,7 @@ from truchet_tiling.core.fills.perlin import Perlin
 
 tiles = TilesRepository()
 
-def compose( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str, connector:DrawingModel):
+def compose( position:tuple, reflected:bool, depth:int, uuid:str, connector:DrawingModel):
     rotation = random.choice([0, 120, 240])
     svg = tiles.get_triangle(depth, rotation, scale_y = -1 if reflected else 1)
     paths, attributes = svg2paths(StringIO(svg))
@@ -31,15 +31,6 @@ def compose( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:st
             start = (begin.real, begin.imag),
             end = (end.real, end.imag),
         )
-        # path_string = translated_path.d()
-        # path_element = svgwrite.path.Path(
-        #     d=path_string,
-        #     stroke="black",
-        #     fill="none",
-        #     stroke_width=1,
-        #     id=path_id
-        # )
-        # drawing.add(path_element)
 
 def create_tritrees(columns:int, rows:int, matrix:Perlin, connector:DrawingModel):
     trees = []
@@ -57,7 +48,7 @@ def create_tritrees(columns:int, rows:int, matrix:Perlin, connector:DrawingModel
                 depth=2,
                 reflected=reflected,    
                 matrix=matrix,
-                connector=connector,
+                model=connector,
             ))
             x += TRI_CELL_WIDTH/2
         y += TRI_CELL_HEIGHT
@@ -81,19 +72,19 @@ def main():
     print("Image size: ", drawing_width, drawing_height)
     
     matrix = Perlin(math.ceil(drawing_width), math.ceil(drawing_height), octaves=4)
-    connector = DrawingModel()
+    model = DrawingModel()
     # matrix = Gradient('linear', math.ceil(drawing_width), math.ceil(drawing_height))
 
-    drawing = Drawing(drawing_width, drawing_height)
+    drawing = Drawing(drawing_width, drawing_height, model)
 
-    trees = create_tritrees(columns, rows, matrix, connector)
+    trees = create_tritrees(columns, rows, matrix, model)
 
     for tree in trees:
-        tree.draw_tile(compose, drawing)
+        tree.draw_tile(compose)
+
+    model.connect_lines()
 
     drawing.save(args.output)
-    clusters = connector.connect_lines()
-    print(clusters)
     
 if __name__ == "__main__":
     main()

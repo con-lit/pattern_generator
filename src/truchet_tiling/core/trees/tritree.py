@@ -6,13 +6,13 @@ from truchet_tiling.core.utils import random_uuid
 class TriTree:
     children = []
     
-    def __init__(self, vertices:list, depth:int, reflected:bool, matrix:Gradient, connector:DrawingModel):
+    def __init__(self, vertices:list, depth:int, reflected:bool, matrix:Gradient, model:DrawingModel):
         self.uuid = None
         self.vertices = vertices
         self.depth = depth
         self.reflected = reflected
         self.matrix = matrix
-        self.connector = connector
+        self.model = model
         if self.can_be_divided:
             self.divide_surface()
         else: 
@@ -39,10 +39,10 @@ class TriTree:
         next_depth = self.depth - 1
 
         self.children = [
-            TriTree([self.vertices[0], mid1, mid3], next_depth, self.reflected, self.matrix, self.connector),
-            TriTree([mid1, self.vertices[1], mid2], next_depth, self.reflected, self.matrix, self.connector),
-            TriTree([mid3, mid2, self.vertices[2]], next_depth, self.reflected, self.matrix, self.connector),
-            TriTree([mid1, mid2, mid3], next_depth, not self.reflected, self.matrix, self.connector),
+            TriTree([self.vertices[0], mid1, mid3], next_depth, self.reflected, self.matrix, self.model),
+            TriTree([mid1, self.vertices[1], mid2], next_depth, self.reflected, self.matrix, self.model),
+            TriTree([mid3, mid2, self.vertices[2]], next_depth, self.reflected, self.matrix, self.model),
+            TriTree([mid1, mid2, mid3], next_depth, not self.reflected, self.matrix, self.model),
         ]
 
     def register_connection(self, point1:tuple, point2:tuple, level:int):
@@ -59,7 +59,7 @@ class TriTree:
                 id = f"{x1}-{y1}-{x2}-{y2}" if x1 < x2 else f"{x2}-{y2}-{x1}-{y1}"
             else:
                 id = f"{x1}-{y1}-{x2}-{y2}" if y1 < y2 else f"{x2}-{y2}-{x1}-{y1}"
-            self.connector.register_connection(id)
+            self.model.register_connection(id)
             
 
     def create_tile(self):
@@ -70,16 +70,15 @@ class TriTree:
             self.register_connection(*side, level = interfaces)
         
 
-    def draw_tile(self, callback, drawing):
+    def draw_tile(self, callback):
         if self.children:
             for child in self.children:
-                child.draw_tile(callback, drawing)
+                child.draw_tile(callback)
         else:
             callback(
-                drawing,
                 self.position,
                 self.reflected,
                 self.depth,
                 self.uuid,
-                self.connector,
+                self.model,
             )
