@@ -1,10 +1,16 @@
 from sklearn.cluster import DBSCAN
+from svgpathtools import Path
 import numpy as np
 
-class ConnectorNew:
+from truchet_tiling.core.utils import random_uuid
+
+class DrawingModel:
     def __init__(self):
-        self.connections = {}
+        self.pathes = {}
         self.points = []
+        self.connections = {}
+        self.lines = {}
+        self.path_line = {}
 
     def register_connection(self, id:str):
         if id not in self.connections:
@@ -12,11 +18,15 @@ class ConnectorNew:
         else:
             self.connections[id].append('connection2')
 
-    def register_path(self, start:tuple, end:tuple, path_id:str):
-        self.points.append([path_id, start])
-        self.points.append([path_id, end])
+    def register_path(self, path_id:str, path: Path, start:tuple, end:tuple):
+        line_id = random_uuid()
+        self.path_line[path_id] = {path_id: line_id}
+        self.lines[line_id] = path
 
-    def cluster_points(self, radius:float = 0.1):
+        self.points.append([line_id, start])
+        self.points.append([line_id, end])
+
+    def connect_lines(self, radius:float = 0.1):
         # Extract (x, y) coordinates from [id, (x, y)]
         coords = np.array([p[1] for p in self.points])
         
@@ -30,4 +40,8 @@ class ConnectorNew:
                 continue
             clusters.setdefault(label, []).append(point)
 
-        return list(clusters.values())
+        for cluster in clusters.values():
+            for i in range(len(cluster) - 1):
+                pair = (cluster[i][0], cluster[i + 1][0])
+                print(pair)
+                

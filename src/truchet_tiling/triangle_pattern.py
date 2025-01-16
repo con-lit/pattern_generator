@@ -6,7 +6,7 @@ from io import StringIO
 from svgpathtools import svg2paths
 
 from truchet_tiling.commons.constants import TRI_CELL_HEIGHT, TRI_CELL_WIDTH
-from truchet_tiling.core.connector_new import ConnectorNew
+from truchet_tiling.core.drawing_model import DrawingModel
 from truchet_tiling.core.drawing import Drawing
 from truchet_tiling.core.svg_utils import get_triangles_translation, translate_path
 from truchet_tiling.core.tiles_repository import TilesRepository
@@ -16,7 +16,7 @@ from truchet_tiling.core.fills.perlin import Perlin
 
 tiles = TilesRepository()
 
-def draw( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str, connector:ConnectorNew):
+def compose( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str, connector:DrawingModel):
     rotation = random.choice([0, 120, 240])
     svg = tiles.get_triangle(depth, rotation, scale_y = -1 if reflected else 1)
     paths, attributes = svg2paths(StringIO(svg))
@@ -26,22 +26,22 @@ def draw( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str, 
         begin = translated_path.start
         end = translated_path.end
         connector.register_path(
-            (begin.real, begin.imag),
-            (end.real, end.imag),
-            path_id
+            path_id = path_id,
+            path = translated_path,
+            start = (begin.real, begin.imag),
+            end = (end.real, end.imag),
         )
-        print(f"Path {path_id} starts at {begin} and ends at {end}")
-        path_string = translated_path.d()
-        path_element = svgwrite.path.Path(
-            d=path_string,
-            stroke="black",
-            fill="none",
-            stroke_width=1,
-            id=path_id
-        )
-        drawing.add(path_element)
+        # path_string = translated_path.d()
+        # path_element = svgwrite.path.Path(
+        #     d=path_string,
+        #     stroke="black",
+        #     fill="none",
+        #     stroke_width=1,
+        #     id=path_id
+        # )
+        # drawing.add(path_element)
 
-def create_tritrees(columns:int, rows:int, matrix:Perlin, connector:ConnectorNew):
+def create_tritrees(columns:int, rows:int, matrix:Perlin, connector:DrawingModel):
     trees = []
     y=0
     for j in range(rows):
@@ -81,7 +81,7 @@ def main():
     print("Image size: ", drawing_width, drawing_height)
     
     matrix = Perlin(math.ceil(drawing_width), math.ceil(drawing_height), octaves=4)
-    connector = ConnectorNew()
+    connector = DrawingModel()
     # matrix = Gradient('linear', math.ceil(drawing_width), math.ceil(drawing_height))
 
     drawing = Drawing(drawing_width, drawing_height)
@@ -89,10 +89,10 @@ def main():
     trees = create_tritrees(columns, rows, matrix, connector)
 
     for tree in trees:
-        tree.draw_tile(draw, drawing)
+        tree.draw_tile(compose, drawing)
 
     drawing.save(args.output)
-    clusters = connector.cluster_points()
+    clusters = connector.connect_lines()
     print(clusters)
     
 if __name__ == "__main__":

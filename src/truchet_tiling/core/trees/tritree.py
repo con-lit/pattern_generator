@@ -1,4 +1,4 @@
-from truchet_tiling.core.connector_new import ConnectorNew
+from truchet_tiling.core.drawing_model import DrawingModel
 from truchet_tiling.core.fills.gradient import Gradient
 from truchet_tiling.core.utils import random_uuid
 
@@ -6,7 +6,7 @@ from truchet_tiling.core.utils import random_uuid
 class TriTree:
     children = []
     
-    def __init__(self, vertices:list, depth:int, reflected:bool, matrix:Gradient, connector:ConnectorNew):
+    def __init__(self, vertices:list, depth:int, reflected:bool, matrix:Gradient, connector:DrawingModel):
         self.uuid = None
         self.vertices = vertices
         self.depth = depth
