@@ -16,19 +16,23 @@ from truchet_tiling.core.fills.perlin import Perlin
 
 tiles = TilesRepository()
 
-def draw_triangle( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str):
+def draw( drawing:Drawing, position:tuple, reflected:bool, depth:int, uuid:str):
     rotation = random.choice([0, 120, 240])
     svg = tiles.get_triangle(depth, rotation, scale_y = -1 if reflected else 1)
     paths, attributes = svg2paths(StringIO(svg))
     for i, path in enumerate(paths):
+        path_id = f'{uuid}-{attributes[i]["id"]}'
         translated_path = translate_path(path, tx=position[0], ty=position[1])
+        begin = translated_path.start
+        end = translated_path.end
+        print(f"Path {path_id} starts at {begin} and ends at {end}")
         path_string = translated_path.d()
         path_element = svgwrite.path.Path(
             d=path_string,
             stroke="black",
             fill="none",
             stroke_width=1,
-            id=f'{uuid}-{attributes[i]["id"]}'
+            id=path_id
         )
         drawing.add(path_element)
 
@@ -74,7 +78,7 @@ def main():
     trees = create_tritrees(columns, rows, matrix, connector)
 
     for tree in trees:
-        tree.draw_tile(draw_triangle, drawing)
+        tree.draw_tile(draw, drawing)
 
     drawing.save(args.output_file)
     

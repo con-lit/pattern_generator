@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="vectors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 43.3">
+  <path id="p1" d="M8.5,0c0,3.02-1.63,5.83-4.26,7.35" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p2" d="M33.5,0s0,.1,0,.15c0,1.32-1.21,2.31-2.52,2.12-3.96-.57-7.99-.57-11.95,0-1.36.2-2.53-.87-2.53-2.24V0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p3" d="M45.76,7.35C43.13,5.83,41.5,3.02,41.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p4" d="M8.25,14.29c10.32-5.96,23.15-5.95,33.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p5" d="M33.24,29.02c-5.1-2.94-11.41-2.94-16.49,0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+  <path id="p6" d="M20.75,35.94c2.61-1.51,5.87-1.5,8.5,0" style="fill: none; stroke: #000; stroke-miterlimit: 10;"/>
+</svg>
