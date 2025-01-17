@@ -1,17 +1,15 @@
 import argparse
 import random
 import math
-import svgwrite
 from io import StringIO
 from svgpathtools import svg2paths
 
 from truchet_tiling.commons.constants import TRI_CELL_HEIGHT, TRI_CELL_WIDTH
 from truchet_tiling.core.drawing_model import DrawingModel
 from truchet_tiling.core.drawing import Drawing
-from truchet_tiling.core.svg_utils import get_triangles_translation, translate_path
+from truchet_tiling.core.svg_utils import translate_path
 from truchet_tiling.core.tiles_repository import TilesRepository
 from truchet_tiling.core.trees.tritree import TriTree
-from truchet_tiling.core.fills.gradient import Gradient
 from truchet_tiling.core.fills.perlin import Perlin
 
 tiles = TilesRepository()
