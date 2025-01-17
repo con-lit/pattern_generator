@@ -23,13 +23,9 @@ def compose( position:tuple, reflected:bool, depth:int, uuid:str, connector:Draw
     for i, path in enumerate(paths):
         path_id = f'{uuid}-{attributes[i]["id"]}'
         translated_path = translate_path(path, tx=position[0], ty=position[1])
-        begin = translated_path.start
-        end = translated_path.end
         connector.register_path(
             path_id = path_id,
             path = translated_path,
-            start = (begin.real, begin.imag),
-            end = (end.real, end.imag),
         )
 
 def create_tritrees(columns:int, rows:int, matrix:Perlin, connector:DrawingModel):
@@ -70,20 +66,18 @@ def main():
     drawing_width = TRI_CELL_WIDTH * (math.ceil(columns / 2) + (1 - columns % 2) / 2)
     drawing_height = rows * TRI_CELL_HEIGHT
     print("Image size: ", drawing_width, drawing_height)
-    
+    print('Setup...')
     matrix = Perlin(math.ceil(drawing_width), math.ceil(drawing_height), octaves=4)
     model = DrawingModel()
-    # matrix = Gradient('linear', math.ceil(drawing_width), math.ceil(drawing_height))
-
     drawing = Drawing(drawing_width, drawing_height, model)
-
+    print('Creating trees...')
     trees = create_tritrees(columns, rows, matrix, model)
-
+    print('Composing...')
     for tree in trees:
         tree.draw_tile(compose)
-
+    print('Connecting...')
     model.connect_lines()
-
+    print('Saving...')
     drawing.save(args.output)
     
 if __name__ == "__main__":

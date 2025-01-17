@@ -40,3 +40,6 @@ def cairo_to_png(surface: ImageSurface) -> BytesIO:
         img.save(buf, format='PNG')
         buf.seek(0)
         return buf
+    
+def close(a, b, tolerance):
+    return abs(a - b) < tolerance

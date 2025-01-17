@@ -1,5 +1,6 @@
 import importlib.resources
 from truchet_tiling.core.svg_utils import get_triangles_translation, translate_path
+from truchet_tiling.core.utils import random_uuid
 import truchet_tiling.static.truchet_tiles_01 as tt
 import truchet_tiling.static.triangles as triangles
 from truchet_tiling.commons.enums import TileType
@@ -11,9 +12,9 @@ class TilesRepository:
     def __init__(self):
         files = ["arcs1", "arcs2", "arcs4", "lines1", "lines2", "lines4"]
         self.triangles = {
-            0: "triangle_1_1.svg",
-            1: "triangle_2_1.svg",
-            2: "triangle_4_1.svg",
+            0: "triangle_1_2.svg",
+            1: "triangle_2_2.svg",
+            2: "triangle_4_2.svg",
         }
         self._files = {}
         #print current directory
@@ -54,7 +55,7 @@ class TilesRepository:
             paths, attributes = svg2paths(fspath)
 
             for i, path in enumerate(paths):
-                id = attributes[i]["id"]
+                id = attributes[i]["id"] if "id" in attributes[i] else random_uuid()
                 tx, ty = get_triangles_translation(rotation, vb_width, vb_height, scale_x, scale_y)
                 translated_path = translate_path(path, r=rotation, tx=tx, ty=ty, sx=scale_x, sy=scale_y)
                 path_string = translated_path.d()

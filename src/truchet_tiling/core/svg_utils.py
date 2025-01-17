@@ -4,6 +4,8 @@ from svgpathtools import Line, CubicBezier, Path, svg2paths
 import svgwrite.path
 from xml.etree import ElementTree as ET
 
+from truchet_tiling.core.utils import close
+
 def transform_complex_point(z, sx, sy, angle_degrees, tx, ty):
     """
     Applies scale, rotation, and translation to a complex coordinate z.
@@ -102,3 +104,26 @@ def create_svg(input:str, rotation:Literal[0, 120, 240]=0, scale_x:int=1, scale_
         dwg.add(path_element)
 
     return dwg.tostring()
+
+def connect_pathes(p1: Path, p2: Path, tolerance=0.1):
+    s1, e1 = p1.start, p1.end
+    s2, e2 = p2.start, p2.end
+
+    if close(e1, s2, tolerance):
+        p2.start = e1
+        connectedPath = Path(*p1, *p2)
+    elif close(e2, s1, tolerance):
+        p1.start = e2
+        connectedPath = Path(*p2, *p1)
+    elif close(s1, s2, tolerance):
+        p1.start = s2
+        connectedPath = Path(*p1.reversed(), *p2)
+    elif close(e1, e2, tolerance): 
+        p1.end = e2
+        connectedPath = Path(*p1, *p2.reversed())
+    else:
+        print(s1, e1)
+        print(s2, e2)
+        raise ValueError("Paths are not connectable")
+    return connectedPath
+    
