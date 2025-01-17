@@ -111,19 +111,23 @@ def connect_pathes(p1: Path, p2: Path, tolerance=0.1):
 
     if close(e1, s2, tolerance):
         p2.start = e1
-        connectedPath = Path(*p1, *p2)
+        first, second = p1, p2
     elif close(e2, s1, tolerance):
         p1.start = e2
-        connectedPath = Path(*p2, *p1)
+        first, second = p2, p1
     elif close(s1, s2, tolerance):
         p1.start = s2
-        connectedPath = Path(*p1.reversed(), *p2)
+        first, second = p1.reversed(), p2
     elif close(e1, e2, tolerance): 
         p1.end = e2
-        connectedPath = Path(*p1, *p2.reversed())
+        first, second = p1, p2.reversed()
     else:
-        print(s1, e1)
-        print(s2, e2)
-        raise ValueError("Paths are not connectable")
-    return connectedPath
+        first, second = p1, p2
+    
+    seg1 = first[-1]
+    seg2 = second[0]
+    d1 = seg1.derivative(1.0)
+    d2 = seg2.derivative(0.0)
+    print(abs(d1 - d2) < 0.2)
+    return Path(*first, *second)
     
