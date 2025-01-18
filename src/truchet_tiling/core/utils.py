@@ -4,11 +4,22 @@ from PIL import Image
 import cairo
 from cairo import ImageSurface
 from io import BytesIO
+from itertools import combinations
 
 alphabet = string.ascii_lowercase + string.digits
 
 def random_uuid():
     return ''.join(random.choices(alphabet, k=8))
+
+def select_two(obj, test_func):
+    responce = []
+    stored_keys = []
+    for a, b in combinations(obj.keys(), 2):
+        va, vb = obj[a], obj[b]
+        if test_func(va, vb) and a not in stored_keys and b not in stored_keys:
+            stored_keys.extend([a, b])
+            responce.append({a: va, b: vb})
+    return responce
 
 def divide_surface(l, s, m, max_cells):
     k = l // s + 1

@@ -74,7 +74,7 @@ def main():
     for tree in trees:
         tree.draw_tile(compose)
     print('Connecting...')
-    model.connect_lines()
+    model.connect_lines(radius=0.4)
     print('Saving...')
     drawing.save(args.output)
     
