@@ -28,6 +28,7 @@ class DrawingModel:
         self.points.append([path_id, (end.real, end.imag)])
 
     def connect_lines(self, radius:float = 0.2):
+        tolerance = 2*radius
         coords = np.array([p[1] for p in self.points])
         dbscan = DBSCAN(eps=radius, min_samples=2).fit(coords)
         clusters = {}
@@ -44,15 +45,11 @@ class DrawingModel:
                 line = self.lines[line_id]
                 lines[line_id] = line
 
-            selected = select_two(lines, is_smooth)
+            selected = select_two(lines, is_smooth, tolerance)
             for pair in selected:
                 line_1_id, line_2_id = [k for k in pair.keys()]
                 line_1, line_2 = [v for v in pair.values()]
-                merged_line = merge_paths(
-                    line_1, 
-                    line_2, 
-                    tolerance=radius,
-                )
+                merged_line = merge_paths(line_1, line_2, tolerance)
                 merged_line_id = random_uuid()
                 self.path_2_line = {k: merged_line_id if v == line_1_id or v == line_2_id else v for k, v in self.path_2_line.items()}
                 self.lines[merged_line_id] = merged_line

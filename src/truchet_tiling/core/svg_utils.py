@@ -105,7 +105,7 @@ def create_svg(input:str, rotation:Literal[0, 120, 240]=0, scale_x:int=1, scale_
 
     return dwg.tostring()
 
-def order_paths(p1: Path, p2:Path, tolerance=0.1):
+def order_paths(p1: Path, p2:Path, tolerance):
     s1, e1 = p1.start, p1.end
     s2, e2 = p2.start, p2.end
 
@@ -126,7 +126,7 @@ def order_paths(p1: Path, p2:Path, tolerance=0.1):
         first, second = p1, p2
     return first, second
 
-def is_smooth(p1: Path, p2:Path, tolerance=0.1):
+def is_smooth(p1: Path, p2:Path, tolerance):
     first, second = order_paths(p1, p2, tolerance)
     try:
         d1 = first[-1].unit_tangent(1.0)
@@ -136,7 +136,7 @@ def is_smooth(p1: Path, p2:Path, tolerance=0.1):
         print('ERROR: unit tangent, probably some derty svg templates')
         return False
 
-def merge_paths(p1: Path, p2: Path, tolerance=0.1):
+def merge_paths(p1: Path, p2: Path, tolerance):
     first, second = order_paths(p1, p2, tolerance)
     p1 = first.end
     p2 = second.start
