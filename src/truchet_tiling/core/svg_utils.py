@@ -105,7 +105,7 @@ def create_svg(input:str, rotation:Literal[0, 120, 240]=0, scale_x:int=1, scale_
 
     return dwg.tostring()
 
-def connect_pathes(p1: Path, p2: Path, tolerance=0.1):
+def merge_paths(p1: Path, p2: Path, tolerance=0.1):
     s1, e1 = p1.start, p1.end
     s2, e2 = p2.start, p2.end
 
@@ -123,11 +123,5 @@ def connect_pathes(p1: Path, p2: Path, tolerance=0.1):
         first, second = p1, p2.reversed()
     else:
         first, second = p1, p2
-    
-    seg1 = first[-1]
-    seg2 = second[0]
-    d1 = seg1.derivative(1.0)
-    d2 = seg2.derivative(0.0)
-    print(abs(d1 - d2) < 0.2)
     return Path(*first, *second)
     
