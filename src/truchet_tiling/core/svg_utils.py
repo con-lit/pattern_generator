@@ -122,12 +122,14 @@ def order_paths(p1: Path, p2:Path, tolerance):
         p1.end = e2
         first, second = p1, p2.reversed()
     else:
-        print("ERROR: paths don't match")
         first, second = p1, p2
+        return None, None
     return first, second
 
 def is_smooth(p1: Path, p2:Path, tolerance):
     first, second = order_paths(p1, p2, tolerance)
+    if first is None and second is None:
+        return False
     try:
         d1 = first[-1].unit_tangent(1.0)
         d2 = second[0].unit_tangent(0.0)
