@@ -39,7 +39,7 @@ def create_tritrees(columns:int, rows:int, matrix:Perlin, connector:DrawingModel
                 vertices = [(x, y), (x+TRI_CELL_WIDTH, y), (x+TRI_CELL_WIDTH/2, y+TRI_CELL_HEIGHT)]
             trees.append(TriTree(
                 vertices, 
-                depth=2,
+                depth=3,
                 reflected=reflected,    
                 matrix=matrix,
                 model=connector,

@@ -12,9 +12,10 @@ class TilesRepository:
     def __init__(self):
         files = ["arcs1", "arcs2", "arcs4", "lines1", "lines2", "lines4"]
         self.triangles = {
-            0: "triangle_1.svg",
-            1: "triangle_2.svg",
-            2: "triangle_4.svg",
+            0: "tritile1-1.svg",
+            1: "tritile2-1.svg",
+            2: "tritile4-1.svg",
+            3: "tritile8-1.svg",
         }
         self._files = {}
         #print current directory
